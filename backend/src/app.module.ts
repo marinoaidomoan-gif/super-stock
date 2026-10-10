@@ -3,6 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
+import { UsersModule } from './users/users.module.js';
+
 
 @Module({
   imports: [
@@ -29,6 +31,8 @@ import { AppService } from './app.service.js';
         synchronize: true,
       }),
     }),
+    // à chaque nouveau module créé, on l'ajoute ici
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
