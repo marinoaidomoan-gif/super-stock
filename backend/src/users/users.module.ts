@@ -6,15 +6,17 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user.entity.js';
+import { UsersService } from './users.service.js';
 
 @Module({
-  // forFeature([User]) : enregistre l'entité User auprès de TypeORM.
-  // Grâce à autoLoadEntities: true dans app.module.ts, la table "utilisateur"
-  // sera créée automatiquement au démarrage de l'application.
+  // Enregistre l'entité User (table "utilisateur") auprès de TypeORM.
   imports: [TypeOrmModule.forFeature([User])],
 
-  // On exporte TypeOrmModule pour que les autres modules (ex. Auth) puissent
-  // utiliser le repository de User en important UsersModule.
-  exports: [TypeOrmModule],
+  // NOUVEAU : déclare le service pour que NestJS puisse l'instancier.
+  providers: [UsersService],
+
+  // NOUVEAU : on exporte UsersService pour que d'autres modules (Auth, seed)
+  // puissent l'utiliser en important UsersModule.
+  exports: [UsersService],
 })
 export class UsersModule {}
