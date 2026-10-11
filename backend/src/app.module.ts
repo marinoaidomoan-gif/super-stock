@@ -33,6 +33,8 @@ import { UsersModule } from './users/users.module.js';
     }),
     // à chaque nouveau module créé, on l'ajoute ici
     UsersModule,
+
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
