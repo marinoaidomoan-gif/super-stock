@@ -7,10 +7,14 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user.entity.js';
 import { UsersService } from './users.service.js';
+import { UsersController } from './users.controller.js';
 
 @Module({
   // Enregistre l'entité User (table "utilisateur") auprès de TypeORM.
   imports: [TypeOrmModule.forFeature([User])],
+
+  // NOUVEAU : déclare le contrôleur pour que ses routes soient actives.
+  controllers: [UsersController],
 
   // NOUVEAU : déclare le service pour que NestJS puisse l'instancier.
   providers: [UsersService],
