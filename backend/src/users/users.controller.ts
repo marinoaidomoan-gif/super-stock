@@ -6,6 +6,7 @@
 // @Controller('users') : toutes les routes de ce fichier commencent par
 // "users". Avec le préfixe global "api" de main.ts, l'adresse complète est
 // donc http://localhost:3000/api/users
+// src/users/users.controller.ts
 import {
   Body,
   Controller,
@@ -15,26 +16,28 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+// décorateur de rôles et énumération
+import { Roles } from '../auth/roles.decorator.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { UpdateUserDto } from './dto/update-user.dto.js';
+import { Role } from './role.enum.js';
 import { UsersService } from './users.service.js';
 
+// @Roles au niveau du CONTRÔLEUR = valable pour TOUTES ses routes.
+// Seul l'administrateur système gère les comptes utilisateurs.
+@Roles(Role.ADMINISTRATEUR)
 @Controller('users')
 export class UsersController {
-  // NestJS injecte automatiquement UsersService (déclaré dans users.module.ts).
   constructor(private readonly usersService: UsersService) {}
 
   // POST /api/users : crée un utilisateur.
-  // @Body() récupère le JSON envoyé. Comme le type est CreateUserDto, le
-  // ValidationPipe de main.ts le vérifie AVANT d'entrer dans cette méthode.
   @Post()
   create(@Body() dto: CreateUserDto) {
     return this.usersService.create(dto);
   }
 
   // GET /api/users/stats : chiffres clés des comptes.
-  // ATTENTION À L'ORDRE : cette route doit être écrite AVANT "GET :id".
-  // Sinon NestJS prendrait le mot "stats" pour un id et renverrait une erreur.
+  // À écrire AVANT "GET :id", sinon "stats" serait pris pour un id.
   @Get('stats')
   stats() {
     return this.usersService.stats();
@@ -47,9 +50,6 @@ export class UsersController {
   }
 
   // GET /api/users/3 : un utilisateur par son id.
-  // @Param('id') lit la valeur de ":id" dans l'adresse.
-  // ParseIntPipe la convertit en nombre, et refuse (400) si ce n'est pas un
-  // nombre, par exemple /api/users/abc.
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.findOne(id);
@@ -62,7 +62,6 @@ export class UsersController {
   }
 
   // PATCH /api/users/3 : modifie nom, email, téléphone ou rôle.
-  // PATCH = modification partielle : on n'envoie que les champs à changer.
   @Patch(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
