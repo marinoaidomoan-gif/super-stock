@@ -9,6 +9,8 @@ import { AuthController } from './auth.controller.js';
 import { AuthService } from './auth.service.js';
 import { JwtAuthGuard } from './jwt-auth.guard.js';
 import { JwtStrategy } from './jwt.strategy.js';
+import { RolesGuard } from './roles.guard.js';
+
 
 @Module({
   imports: [
@@ -42,6 +44,7 @@ import { JwtStrategy } from './jwt.strategy.js';
     // APP_GUARD = guard GLOBAL : il s'applique à TOUTES les routes de
     // l'application, sans avoir à l'écrire sur chaque contrôleur.
     { provide: APP_GUARD, useClass: JwtAuthGuard },
+    { provide: APP_GUARD, useClass: RolesGuard },
   ],
 })
 export class AuthModule {}
