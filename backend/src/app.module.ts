@@ -5,6 +5,8 @@ import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { UsersModule } from './users/users.module.js';
 import { AuthModule } from './auth/auth.module.js';
+import { CategoriesModule } from './categories/categories.module.js';
+
 
 
 @Module({
@@ -36,6 +38,8 @@ import { AuthModule } from './auth/auth.module.js';
     UsersModule,
 
     AuthModule,
+
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
