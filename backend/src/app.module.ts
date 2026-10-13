@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module.js';
 import { CategoriesModule } from './categories/categories.module.js';
 import { SuppliersModule } from './suppliers/suppliers.module.js';
 import { ProductsModule } from './products/products.module.js';
+import { StockMovementsModule } from './stock-movements/stock-movements.module.js';
 
 
 @Module({
@@ -45,6 +46,8 @@ import { ProductsModule } from './products/products.module.js';
     SuppliersModule,
 
     ProductsModule,
+
+    StockMovementsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
