@@ -2,13 +2,14 @@
 //
 // Logique métier des catégories : créer, lire, modifier, supprimer.
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
-  BadRequestException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { QueryFailedError, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
+import { estErreurCleEtrangere } from '../common/postgres-errors.js';
 import { Category } from './category.entity.js';
 import { CreateCategoryDto } from './dto/create-category.dto.js';
 import { UpdateCategoryDto } from './dto/update-category.dto.js';
@@ -90,19 +91,15 @@ export class CategoriesService {
     try {
       await this.categoriesRepository.remove(categorie);
     } catch (erreur) {
-      // Code PostgreSQL 23503 = "foreign_key_violation" : un produit pointe
-      // encore vers cette catégorie. La clé étrangère (avec suppression
-      // restreinte) bloque la suppression, et on la transforme en message clair.
-      // Ça fonctionnera automatiquement dès que l'entité Product existera,
-      // sans avoir à modifier ce fichier.
-      if (
-        erreur instanceof QueryFailedError &&
-        (erreur.driverError as { code?: string }).code === '23503'
-      ) {
+      // Un produit pointe encore vers cette catégorie : la clé étrangère
+      // (suppression restreinte) bloque la suppression côté PostgreSQL.
+      // On transforme cette erreur technique en message clair (409).
+      if (estErreurCleEtrangere(erreur)) {
         throw new ConflictException(
           'Impossible de supprimer cette catégorie : elle contient des produits.',
         );
       }
+      // Toute autre erreur est inattendue : on la laisse remonter (500).
       throw erreur;
     }
   }

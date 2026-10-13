@@ -8,7 +8,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ILike, QueryFailedError, Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
+import { estErreurCleEtrangere } from '../common/postgres-errors.js';
 import { CreateSupplierDto } from './dto/create-supplier.dto.js';
 import { UpdateSupplierDto } from './dto/update-supplier.dto.js';
 import { Supplier } from './supplier.entity.js';
@@ -71,14 +72,11 @@ export class SuppliersService {
     try {
       await this.suppliersRepository.remove(fournisseur);
     } catch (erreur) {
-      // 23503 = "foreign_key_violation" : des mouvements de stock pointent
-      // encore vers ce fournisseur. La clé étrangère (suppression restreinte)
-      // bloque la suppression : on garde ainsi l'historique intact.
-      // Ça fonctionnera dès que l'entité StockMovement existera.
-      if (
-        erreur instanceof QueryFailedError &&
-        (erreur.driverError as { code?: string }).code === '23503'
-      ) {
+      // Des mouvements de stock pointent encore vers ce fournisseur : la clé
+      // étrangère (suppression restreinte) bloque la suppression, et on garde
+      // ainsi l'historique intact. Ça fonctionnera dès que l'entité
+      // StockMovement existera.
+      if (estErreurCleEtrangere(erreur)) {
         throw new ConflictException(
           'Impossible de supprimer ce fournisseur : il est lié à des mouvements de stock.',
         );
