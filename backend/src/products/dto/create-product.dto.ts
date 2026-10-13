@@ -1,8 +1,11 @@
 // src/products/dto/create-product.dto.ts
 //
 // Données attendues pour créer un produit.
-// Remarque : il n'y a PAS de quantiteStock ici. Un produit démarre à 0 et son
-// stock évolue uniquement par les mouvements d'entrée et de sortie.
+// Remarques :
+//  - il n'y a PAS de quantiteStock : un produit démarre à 0 et son stock évolue
+//    uniquement par les mouvements d'entrée et de sortie ;
+//  - il n'y a PAS de référence : elle est générée par le serveur (PROD-001...).
+//    Si le frontend en envoie une, le ValidationPipe répond 400.
 import { Transform, TransformFnParams } from 'class-transformer';
 import {
   IsEnum,
@@ -21,11 +24,6 @@ import { Unite } from '../unite.enum.js';
 const nettoyer = ({ value }: TransformFnParams): unknown =>
   typeof value === 'string' ? value.trim() : value;
 
-// Pour la référence : espaces supprimés + MAJUSCULES. "eau-15" et "EAU-15"
-// deviennent la même référence, ce qui garantit l'unicité (règle R8).
-const enMajuscules = ({ value }: TransformFnParams): unknown =>
-  typeof value === 'string' ? value.trim().toUpperCase() : value;
-
 // Champ facultatif : un texte vide devient null (la base enregistre NULL).
 const videEnNull = ({ value }: TransformFnParams): unknown => {
   if (typeof value !== 'string') return value;
@@ -39,12 +37,6 @@ export class CreateProductDto {
   @IsNotEmpty({ message: 'Le nom du produit est obligatoire.' })
   @MaxLength(150, { message: 'Le nom ne doit pas dépasser 150 caractères.' })
   nom!: string;
-
-  @Transform(enMajuscules)
-  @IsString({ message: 'La référence doit être un texte.' })
-  @IsNotEmpty({ message: 'La référence est obligatoire.' })
-  @MaxLength(50, { message: 'La référence ne doit pas dépasser 50 caractères.' })
-  reference!: string;
 
   @Transform(videEnNull)
   @IsOptional()
