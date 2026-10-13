@@ -11,6 +11,7 @@ const Login = lazy(() => import('@/pages/public/Login'))
 const ForgotPassword = lazy(() => import('@/pages/public/ForgotPassword'))
 const Dashboard = lazy(() => import('@/pages/private/Dashboard'))
 const Placeholder = lazy(() => import('@/pages/private/Placeholder'))
+const Categories = lazy(() => import('@/pages/private/Categories'))
 
 export default function App() {
   return (
@@ -32,7 +33,7 @@ export default function App() {
                   {/* Gérant (et propriétaire, qui hérite) */}
                   <Route element={<ProtectedRoute roles={[ROLES.GERANT]} />}>
                     <Route path="/produits" element={<Placeholder titleKey="nav.produits" />} />
-                    <Route path="/categories" element={<Placeholder titleKey="nav.categories" />} />
+                    <Route path="/categories" element={<Categories />} />
                     <Route path="/mouvements" element={<Placeholder titleKey="nav.mouvements" />} />
                     <Route path="/alertes" element={<Placeholder titleKey="nav.alertes" />} />
                   </Route>
