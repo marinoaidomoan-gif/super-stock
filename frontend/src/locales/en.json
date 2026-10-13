@@ -8,6 +8,36 @@
       "toggle": "Toggle theme"
     }
   },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Access your stock management workspace.",
+      "email": "Email address",
+      "emailPlaceholder": "you@company.com",
+      "password": "Password",
+      "submit": "Sign in",
+      "forgot": "Forgot your password?",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
+    },
+    "forgot": {
+      "title": "Forgot password",
+      "message": "Please contact the System Administrator to reset your password.",
+      "back": "Back to sign in"
+    },
+    "errors": {
+      "emailRequired": "Email address is required.",
+      "emailInvalid": "Email address is not valid.",
+      "passwordRequired": "Password is required."
+    },
+    "invalidCredentials": "Incorrect email or password.",
+    "accountDisabled": "This account is disabled. Contact your administrator.",
+    "logout": "Sign out"
+  },
+  "dashboard": {
+    "welcome": "Welcome, {{name}}",
+    "role": "Role: {{role}}"
+  },
   "errors": {
     "network": "Unable to reach the server. Check your connection.",
     "unauthorized": "Session expired. Please sign in again.",

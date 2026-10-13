@@ -8,6 +8,36 @@
       "toggle": "Changer de thème"
     }
   },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "subtitle": "Accédez à votre espace de gestion de stock.",
+      "email": "Adresse email",
+      "emailPlaceholder": "vous@entreprise.com",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "forgot": "Mot de passe oublié ?",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe"
+    },
+    "forgot": {
+      "title": "Mot de passe oublié",
+      "message": "Veuillez contacter l'Administrateur Système pour réinitialiser votre mot de passe.",
+      "back": "Retour à la connexion"
+    },
+    "errors": {
+      "emailRequired": "L'adresse email est obligatoire.",
+      "emailInvalid": "L'adresse email n'est pas valide.",
+      "passwordRequired": "Le mot de passe est obligatoire."
+    },
+    "invalidCredentials": "Email ou mot de passe incorrect.",
+    "accountDisabled": "Ce compte est désactivé. Contactez l'administrateur.",
+    "logout": "Se déconnecter"
+  },
+  "dashboard": {
+    "welcome": "Bienvenue, {{name}}",
+    "role": "Rôle : {{role}}"
+  },
   "errors": {
     "network": "Impossible de joindre le serveur. Vérifiez votre connexion.",
     "unauthorized": "Session expirée. Veuillez vous reconnecter.",
