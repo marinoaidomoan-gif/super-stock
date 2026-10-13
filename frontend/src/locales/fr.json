@@ -1,0 +1,21 @@
+{
+  "common": {
+    "appName": "SuperStock",
+    "language": "Langue",
+    "loading": "Chargement...",
+    "retry": "Réessayer",
+    "theme": {
+      "toggle": "Changer de thème"
+    }
+  },
+  "errors": {
+    "network": "Impossible de joindre le serveur. Vérifiez votre connexion.",
+    "unauthorized": "Session expirée. Veuillez vous reconnecter.",
+    "forbidden": "Vous n'avez pas le droit d'effectuer cette action.",
+    "notFound": "Élément introuvable.",
+    "conflict": "Cet élément existe déjà.",
+    "validation": "Données invalides.",
+    "tooManyRequests": "Trop de tentatives. Réessayez dans une minute.",
+    "server": "Une erreur est survenue. Réessayez plus tard."
+  }
+}
