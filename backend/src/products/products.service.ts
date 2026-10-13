@@ -2,9 +2,9 @@
 //
 // Logique métier des produits : créer, lister (avec filtres et pagination),
 // consulter, modifier, désactiver, et lister les alertes de stock bas.
+import { randomUUID } from 'node:crypto';
 import {
   BadRequestException,
-  ConflictException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -29,34 +29,38 @@ export class ProductsService {
     private readonly categoriesService: CategoriesService,
   ) {}
 
-  // Vérifie qu'aucun AUTRE produit n'a déjà cette référence (règle R8).
-  private async verifierReferenceDisponible(reference: string, idExclu?: number) {
-    const existant = await this.productsRepository.findOne({
-      where: { reference },
-    });
-    if (existant && existant.id !== idExclu) {
-      throw new ConflictException('Un produit avec cette référence existe déjà.');
-    }
-  }
-
   async create(dto: CreateProductDto): Promise<Product> {
     // 404 si la catégorie n'existe pas.
     await this.categoriesService.findOne(dto.categoryId);
-    await this.verifierReferenceDisponible(dto.reference);
 
-    // quantiteStock n'est pas fourni : la base met 0 par défaut.
-    const produit = this.productsRepository.create({
-      nom: dto.nom,
-      reference: dto.reference,
-      description: dto.description ?? null,
-      unite: dto.unite,
-      seuilAlerte: dto.seuilAlerte ?? 0,
-      categoryId: dto.categoryId,
-    });
-    const enregistre = await this.productsRepository.save(produit);
+    // La référence PROD-001 est fabriquée à partir de l'id du produit, qu'on
+    // ne connaît qu'APRÈS l'enregistrement. On procède donc en 2 temps, dans
+    // une TRANSACTION (tout réussit ou tout est annulé) :
+    //  1) on enregistre le produit avec une référence provisoire unique ;
+    //  2) on la remplace par PROD-<id sur 3 chiffres>.
+    const id = await this.productsRepository.manager.transaction(
+      async (manager) => {
+        // quantiteStock n'est pas fourni : la base met 0 par défaut.
+        const produit = manager.create(Product, {
+          nom: dto.nom,
+          reference: `TMP-${randomUUID()}`,
+          description: dto.description ?? null,
+          unite: dto.unite,
+          seuilAlerte: dto.seuilAlerte ?? 0,
+          categoryId: dto.categoryId,
+        });
+        const enregistre = await manager.save(produit);
 
-    // On relit le produit pour obtenir aussi sa catégorie (eager).
-    return this.findOne(enregistre.id);
+        // padStart(3, '0') : 1 -> "001", 25 -> "025", 1200 -> "1200".
+        await manager.update(Product, enregistre.id, {
+          reference: `PROD-${String(enregistre.id).padStart(3, '0')}`,
+        });
+        return enregistre.id;
+      },
+    );
+
+    // On relit le produit pour obtenir sa référence finale et sa catégorie.
+    return this.findOne(id);
   }
 
   // Liste paginée avec filtres. Renvoie aussi le total pour que le frontend
@@ -132,19 +136,11 @@ export class ProductsService {
     const produit = await this.findOne(id);
 
     // PartialType accepte aussi null ; ces champs sont pourtant obligatoires.
-    if (
-      dto.nom === null ||
-      dto.reference === null ||
-      dto.unite === null ||
-      dto.categoryId === null
-    ) {
+    // (La référence n'est plus modifiable : elle n'est plus dans le DTO.)
+    if (dto.nom === null || dto.unite === null || dto.categoryId === null) {
       throw new BadRequestException(
-        "Le nom, la référence, l'unité et la catégorie ne peuvent pas être vides.",
+        "Le nom, l'unité et la catégorie ne peuvent pas être vides.",
       );
-    }
-
-    if (dto.reference && dto.reference !== produit.reference) {
-      await this.verifierReferenceDisponible(dto.reference, id);
     }
 
     // Copie les champs reçus dans le produit existant.
