@@ -3,7 +3,7 @@
 // Un "service" contient la LOGIQUE MÉTIER : ce que l'application fait
 // réellement (créer, lire, modifier...). Le contrôleur ne
 // fera que recevoir les requêtes HTTP et appeler ce service.
-import { ConflictException,Injectable,NotFoundException, } from '@nestjs/common';
+import { ConflictException,Injectable,NotFoundException,BadRequestException, } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -80,6 +80,13 @@ export class UsersService {
   // Modifie un utilisateur (nom, email, téléphone, rôle).
   async update(id: number, dto: UpdateUserDto): Promise<User> {
     const user = await this.findOne(id);
+
+    // PartialType accepte aussi null ; ces champs sont pourtant obligatoires.
+    if (dto.nom === null || dto.email === null || dto.role === null) {
+      throw new BadRequestException(
+        'Le nom, l\'email et le rôle ne peuvent pas être vides.',
+      );
+    }
 
     // Si l'email change, on vérifie qu'il n'est pas déjà pris par quelqu'un.
     if (dto.email && dto.email !== user.email) {

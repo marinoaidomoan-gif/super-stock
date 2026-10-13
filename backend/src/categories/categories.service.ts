@@ -5,6 +5,7 @@ import {
   ConflictException,
   Injectable,
   NotFoundException,
+  BadRequestException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { QueryFailedError, Repository } from 'typeorm';
@@ -65,6 +66,11 @@ export class CategoriesService {
 
   async update(id: number, dto: UpdateCategoryDto): Promise<Category> {
     const categorie = await this.findOne(id);
+
+    // PartialType accepte aussi null ; le nom est pourtant obligatoire.
+    if (dto.nom === null) {
+      throw new BadRequestException('Le nom de la catégorie est obligatoire.');
+    }
 
     // On ne vérifie le nom que s'il est envoyé.
     if (dto.nom !== undefined) {
