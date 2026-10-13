@@ -6,6 +6,7 @@ import { AppService } from './app.service.js';
 import { UsersModule } from './users/users.module.js';
 import { AuthModule } from './auth/auth.module.js';
 import { CategoriesModule } from './categories/categories.module.js';
+import { SuppliersModule } from './suppliers/suppliers.module.js';
 
 
 
@@ -40,6 +41,8 @@ import { CategoriesModule } from './categories/categories.module.js';
     AuthModule,
 
     CategoriesModule,
+
+    SuppliersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
