@@ -9,6 +9,7 @@ import { CategoriesModule } from './categories/categories.module.js';
 import { SuppliersModule } from './suppliers/suppliers.module.js';
 import { ProductsModule } from './products/products.module.js';
 import { StockMovementsModule } from './stock-movements/stock-movements.module.js';
+import { InventoriesModule } from './inventories/inventories.module.js';
 
 
 @Module({
@@ -48,6 +49,8 @@ import { StockMovementsModule } from './stock-movements/stock-movements.module.j
     ProductsModule,
 
     StockMovementsModule,
+
+    InventoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
