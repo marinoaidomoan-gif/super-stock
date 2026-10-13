@@ -1,11 +1,90 @@
 {
-  "common": {
+    "common": {
     "appName": "SuperStock",
     "language": "Langue",
     "loading": "Chargement...",
     "retry": "Réessayer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "actions": "Actions",
     "theme": {
       "toggle": "Changer de thème"
+    }
+  },
+    "nav": {
+    "dashboard": "Tableau de bord",
+    "produits": "Produits",
+    "categories": "Catégories",
+    "fournisseurs": "Fournisseurs",
+    "mouvements": "Mouvements",
+    "inventaire": "Inventaire",
+    "alertes": "Alertes",
+    "utilisateurs": "Utilisateurs",
+    "historique": "Historique",
+    "parametres": "Paramètres"
+  },
+  "roles": {
+    "PROPRIETAIRE": "Propriétaire",
+    "GERANT": "Gérant",
+    "ADMINISTRATEUR": "Administrateur"
+  },
+  "layout": {
+    "menu": "Menu",
+    "toggleSidebar": "Afficher ou masquer le menu latéral",
+    "search": "Rechercher un produit...",
+    "skipToContent": "Aller au contenu",
+    "notifications": "Notifications",
+    "alertsCount_one": "{{count}} alerte de stock bas",
+    "alertsCount_many": "{{count}} alertes de stock bas",
+    "alertsCount_other": "{{count}} alertes de stock bas",
+    "noAlerts": "Aucune alerte de stock bas.",
+    "viewAllAlerts": "Voir toutes les alertes",
+    "userMenu": "Menu utilisateur",
+    "comingSoon": "Cette page arrive bientôt."
+  },
+    "categories": {
+    "title": "Catégories",
+    "subtitle": "Organisez vos produits par catégorie.",
+    "add": "Ajouter une catégorie",
+    "columns": {
+      "name": "Nom",
+      "description": "Description",
+      "products": "Produits"
+    },
+    "productsCount_one": "{{count}} produit",
+    "productsCount_many": "{{count}} produits",
+    "productsCount_other": "{{count}} produits",
+    "empty": {
+      "title": "Aucune catégorie",
+      "description": "Créez votre première catégorie pour commencer à classer vos produits."
+    },
+    "form": {
+      "createTitle": "Nouvelle catégorie",
+      "editTitle": "Modifier la catégorie",
+      "helper": "Renseignez les informations de la catégorie.",
+      "name": "Nom",
+      "namePlaceholder": "Ex. : Boissons",
+      "description": "Description (facultatif)",
+      "nameRequired": "Le nom est obligatoire.",
+      "nameTooLong": "Le nom ne doit pas dépasser 100 caractères.",
+      "descriptionTooLong": "La description ne doit pas dépasser 500 caractères."
+    },
+    "delete": {
+      "title": "Supprimer la catégorie ?",
+      "description": "La catégorie « {{name}} » sera définitivement supprimée.",
+      "confirm": "Supprimer"
+    },
+    "toast": {
+      "created": "Catégorie créée.",
+      "updated": "Catégorie modifiée.",
+      "deleted": "Catégorie supprimée."
+    },
+    "errors": {
+      "nameExists": "Une catégorie portant ce nom existe déjà.",
+      "hasProducts": "Impossible de supprimer cette catégorie : elle contient des produits.",
+      "loadFailed": "Impossible de charger les catégories."
     }
   },
   "auth": {

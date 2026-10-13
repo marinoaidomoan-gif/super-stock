@@ -4,8 +4,85 @@
     "language": "Language",
     "loading": "Loading...",
     "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "actions": "Actions",
     "theme": {
       "toggle": "Toggle theme"
+    }
+  },
+    "nav": {
+    "dashboard": "Dashboard",
+    "produits": "Products",
+    "categories": "Categories",
+    "fournisseurs": "Suppliers",
+    "mouvements": "Movements",
+    "inventaire": "Inventory",
+    "alertes": "Alerts",
+    "utilisateurs": "Users",
+    "historique": "History",
+    "parametres": "Settings"
+  },
+  "roles": {
+    "PROPRIETAIRE": "Owner",
+    "GERANT": "Manager",
+    "ADMINISTRATEUR": "Administrator"
+  },
+  "layout": {
+    "menu": "Menu",
+    "toggleSidebar": "Toggle sidebar",
+    "search": "Search products...",
+    "skipToContent": "Skip to content",
+    "notifications": "Notifications",
+    "alertsCount_one": "{{count}} low stock alert",
+    "alertsCount_other": "{{count}} low stock alerts",
+    "noAlerts": "No low stock alerts.",
+    "viewAllAlerts": "View all alerts",
+    "userMenu": "User menu",
+    "comingSoon": "This page is coming soon."
+  },
+    "categories": {
+    "title": "Categories",
+    "subtitle": "Organize your products by category.",
+    "add": "Add a category",
+    "columns": {
+      "name": "Name",
+      "description": "Description",
+      "products": "Products"
+    },
+    "productsCount_one": "{{count}} product",
+    "productsCount_other": "{{count}} products",
+    "empty": {
+      "title": "No categories",
+      "description": "Create your first category to start organizing your products."
+    },
+    "form": {
+      "createTitle": "New category",
+      "editTitle": "Edit category",
+      "helper": "Fill in the category details.",
+      "name": "Name",
+      "namePlaceholder": "E.g. Beverages",
+      "description": "Description (optional)",
+      "nameRequired": "Name is required.",
+      "nameTooLong": "Name must not exceed 100 characters.",
+      "descriptionTooLong": "Description must not exceed 500 characters."
+    },
+    "delete": {
+      "title": "Delete this category?",
+      "description": "The category \"{{name}}\" will be permanently deleted.",
+      "confirm": "Delete"
+    },
+    "toast": {
+      "created": "Category created.",
+      "updated": "Category updated.",
+      "deleted": "Category deleted."
+    },
+    "errors": {
+      "nameExists": "A category with this name already exists.",
+      "hasProducts": "This category cannot be deleted: it contains products.",
+      "loadFailed": "Unable to load categories."
     }
   },
   "auth": {

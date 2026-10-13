@@ -3,16 +3,17 @@ import { MotionConfig } from 'framer-motion'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import PageLoader from '@/components/common/PageLoader'
 import ProtectedRoute from '@/components/common/ProtectedRoute'
+import DashboardLayout from '@/components/layout/DashboardLayout'
 import { AuthProvider } from '@/contexts/AuthProvider'
+import { ROLES } from '@/lib/roles'
 
-// Chargement différé : chaque page est téléchargée seulement quand on la visite.
 const Login = lazy(() => import('@/pages/public/Login'))
 const ForgotPassword = lazy(() => import('@/pages/public/ForgotPassword'))
 const Dashboard = lazy(() => import('@/pages/private/Dashboard'))
+const Placeholder = lazy(() => import('@/pages/private/Placeholder'))
 
 export default function App() {
   return (
-    // reducedMotion="user" : respecte le réglage « réduire les animations » du système.
     <MotionConfig reducedMotion="user">
       <BrowserRouter>
         <AuthProvider>
@@ -21,8 +22,32 @@ export default function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
 
+              {/* Connecté : tous les rôles */}
               <Route element={<ProtectedRoute />}>
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route element={<DashboardLayout />}>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/historique" element={<Placeholder titleKey="nav.historique" />} />
+                  <Route path="/parametres" element={<Placeholder titleKey="nav.parametres" />} />
+
+                  {/* Gérant (et propriétaire, qui hérite) */}
+                  <Route element={<ProtectedRoute roles={[ROLES.GERANT]} />}>
+                    <Route path="/produits" element={<Placeholder titleKey="nav.produits" />} />
+                    <Route path="/categories" element={<Placeholder titleKey="nav.categories" />} />
+                    <Route path="/mouvements" element={<Placeholder titleKey="nav.mouvements" />} />
+                    <Route path="/alertes" element={<Placeholder titleKey="nav.alertes" />} />
+                  </Route>
+
+                  {/* Propriétaire uniquement */}
+                  <Route element={<ProtectedRoute roles={[ROLES.PROPRIETAIRE]} />}>
+                    <Route path="/fournisseurs" element={<Placeholder titleKey="nav.fournisseurs" />} />
+                    <Route path="/inventaire" element={<Placeholder titleKey="nav.inventaire" />} />
+                  </Route>
+
+                  {/* Administrateur système uniquement */}
+                  <Route element={<ProtectedRoute roles={[ROLES.ADMINISTRATEUR]} />}>
+                    <Route path="/utilisateurs" element={<Placeholder titleKey="nav.utilisateurs" />} />
+                  </Route>
+                </Route>
               </Route>
 
               <Route path="*" element={<Navigate to="/dashboard" replace />} />

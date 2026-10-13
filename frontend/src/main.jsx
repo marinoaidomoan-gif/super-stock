@@ -7,6 +7,8 @@ import './index.css'
 import './i18n'
 import App from './App.jsx'
 import { Toaster } from '@/components/ui/sonner'
+import { TooltipProvider } from '@/components/ui/tooltip'
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,11 +16,15 @@ const queryClient = new QueryClient({
   },
 })
 
+
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} storageKey="superstock-theme">
       <QueryClientProvider client={queryClient}>
-        <App />
+        <TooltipProvider delayDuration={0}>
+          <App />
+        </TooltipProvider>
         <Toaster richColors position="top-right" />
       </QueryClientProvider>
     </ThemeProvider>

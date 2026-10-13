@@ -173,3 +173,26 @@
     animation-duration: 0.01ms !important;
   }
 }
+
+/* === Sidebar === */
+:root {
+  --sidebar: #ffffff;
+  --sidebar-foreground: #111827;
+  --sidebar-primary: #047857;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ecfdf5;
+  --sidebar-accent-foreground: #065f46;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #10b981;
+}
+
+.dark {
+  --sidebar: #111827;
+  --sidebar-foreground: #f9fafb;
+  --sidebar-primary: #10b981;
+  --sidebar-primary-foreground: #052e16;
+  --sidebar-accent: rgb(16 185 129 / 0.12);
+  --sidebar-accent-foreground: #6ee7b7;
+  --sidebar-border: rgb(255 255 255 / 0.05);
+  --sidebar-ring: #10b981;
+}
