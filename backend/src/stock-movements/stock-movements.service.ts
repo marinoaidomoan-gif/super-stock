@@ -8,7 +8,8 @@
 //  R2 le stock ne devient jamais négatif (via Product.diminuerStock) ;
 //  R3 mouvement + mise à jour du stock dans UNE SEULE transaction ;
 //  R4 un mouvement n'est jamais modifié ni supprimé (correction = mouvement inverse) ;
-//  R12 réservé au gérant et au propriétaire (le contrôleur s'en charge).
+//  R12 réservé au gérant et au propriétaire (le contrôleur s'en charge) ;
+//  + les mouvements sont suspendus tant qu'un inventaire est en cours.
 import {
   BadRequestException,
   ConflictException,
@@ -17,6 +18,9 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, EntityManager, Repository } from 'typeorm';
+// NOUVEAU : pour savoir si un inventaire est en cours
+import { Inventory } from '../inventories/inventory.entity.js';
+import { StatutInventaire } from '../inventories/statut-inventaire.enum.js';
 import { Product } from '../products/product.entity.js';
 import { Supplier } from '../suppliers/supplier.entity.js';
 import { User } from '../users/user.entity.js';
@@ -84,6 +88,24 @@ export class StockMovementsService {
     return produit;
   }
 
+  // NOUVEAU : tant qu'un inventaire est EN COURS, aucun mouvement n'est
+  // possible, sinon le stock changerait pendant le comptage et les écarts
+  // seraient faux. On appelle cette méthode APRÈS avoir verrouillé le produit :
+  // le lancement d'un inventaire verrouille tous les produits, donc si on a
+  // obtenu le verrou, on est sûr de voir l'inventaire s'il vient d'être lancé.
+  private async verifierAucunInventaireEnCours(
+    manager: EntityManager,
+  ): Promise<void> {
+    const enCours = await manager.count(Inventory, {
+      where: { statut: StatutInventaire.EN_COURS },
+    });
+    if (enCours > 0) {
+      throw new ConflictException(
+        "Un inventaire est en cours : les mouvements de stock sont suspendus jusqu'à sa validation ou son annulation.",
+      );
+    }
+  }
+
   // ===== Enregistrer un mouvement (entrée ou sortie) =====
   async create(dto: CreateStockMovementDto, user: User): Promise<StockMovement> {
     // 1) Vérifications de cohérence, AVANT de toucher à la base.
@@ -108,6 +130,7 @@ export class StockMovementsService {
     // n'est enregistré : ni le mouvement, ni le changement de stock.
     const idMouvement = await this.dataSource.transaction(async (manager) => {
       const produit = await this.verrouillerProduit(manager, dto.productId);
+      await this.verifierAucunInventaireEnCours(manager);
 
       if (dto.supplierId != null) {
         const fournisseur = await manager.findOne(Supplier, {
@@ -162,6 +185,7 @@ export class StockMovementsService {
       }
 
       const produit = await this.verrouillerProduit(manager, original.productId);
+      await this.verifierAucunInventaireEnCours(manager);
 
       // Fabrique le mouvement inverse, puis l'applique sur le stock.
       // Si le stock est devenu insuffisant (ex. on corrige une entrée dont une
