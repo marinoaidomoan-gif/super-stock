@@ -528,6 +528,53 @@
     "tooManyRequests": "Too many attempts. Try again in a minute.",
     "server": "Something went wrong. Please try again later."
   },
+  "settings": {
+  "title": "Settings",
+  "subtitle": "Your profile, preferences and company.",
+  "profile": {
+    "title": "My profile",
+    "subtitle": "Your personal information",
+    "name": "Full name",
+    "email": "Email",
+    "emailHint": "Contact an administrator to change your email.",
+    "save": "Save changes",
+    "success": "Profile updated.",
+    "nameRequired": "Name is required.",
+    "noChange": "No change to save."
+  },
+  "preferences": {
+    "title": "Preferences",
+    "subtitle": "A space that feels like you",
+    "language": "Interface language",
+    "languageHint": "Available in French and English",
+    "darkMode": "Dark mode",
+    "darkModeHint": "A display tailored to your comfort",
+    "autoSave": "Your preferences are saved automatically."
+  },
+  "security": {
+    "title": "Security",
+    "subtitle": "Protect your account",
+    "current": "Current password",
+    "new": "New password",
+    "confirmation": "Confirm new password",
+    "submit": "Change password",
+    "success": "Password updated.",
+    "errors": {
+      "currentRequired": "Current password is required.",
+      "newRequired": "New password is required.",
+      "newTooShort": "Password must be at least 6 characters.",
+      "mismatch": "The two passwords do not match."
+    }
+  },
+  "company": {
+    "title": "My company",
+    "subtitle": "General settings of your workspace",
+    "name": "Company name",
+    "save": "Save",
+    "success": "Company name saved.",
+    "nameRequired": "Name is required."
+  }
+},
   "landing": {
     "openApp": "Open the app",
     "nav": {

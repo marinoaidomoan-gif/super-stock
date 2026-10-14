@@ -589,6 +589,53 @@
     "tooManyRequests": "Trop de tentatives. Réessayez dans une minute.",
     "server": "Une erreur est survenue. Réessayez plus tard."
   },
+  "settings": {
+  "title": "Paramètres",
+  "subtitle": "Votre profil, vos préférences et votre entreprise.",
+  "profile": {
+    "title": "Mon profil",
+    "subtitle": "Vos informations personnelles",
+    "name": "Nom complet",
+    "email": "Email",
+    "emailHint": "Contactez l'administrateur pour modifier votre email.",
+    "save": "Enregistrer les modifications",
+    "success": "Profil mis à jour.",
+    "nameRequired": "Le nom est obligatoire.",
+    "noChange": "Aucune modification à enregistrer."
+  },
+  "preferences": {
+    "title": "Préférences",
+    "subtitle": "Un espace qui vous ressemble",
+    "language": "Langue de l'interface",
+    "languageHint": "Disponible en français et en anglais",
+    "darkMode": "Mode sombre",
+    "darkModeHint": "Un affichage adapté à votre confort",
+    "autoSave": "Vos préférences sont sauvegardées automatiquement."
+  },
+  "security": {
+    "title": "Sécurité",
+    "subtitle": "Protégez votre compte",
+    "current": "Mot de passe actuel",
+    "new": "Nouveau mot de passe",
+    "confirmation": "Confirmer le nouveau mot de passe",
+    "submit": "Changer le mot de passe",
+    "success": "Mot de passe modifié.",
+    "errors": {
+      "currentRequired": "Le mot de passe actuel est obligatoire.",
+      "newRequired": "Le nouveau mot de passe est obligatoire.",
+      "newTooShort": "Le mot de passe doit contenir au moins 6 caractères.",
+      "mismatch": "Les deux mots de passe ne correspondent pas."
+    }
+  },
+  "company": {
+    "title": "Mon entreprise",
+    "subtitle": "Paramètres généraux de votre espace",
+    "name": "Nom de l'entreprise",
+    "save": "Enregistrer",
+    "success": "Nom de l'entreprise enregistré.",
+    "nameRequired": "Le nom est obligatoire."
+  }
+},
   "landing": {
     "openApp": "Accéder à l'application",
     "nav": {
