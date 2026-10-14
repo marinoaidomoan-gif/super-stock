@@ -85,6 +85,121 @@
       "loadFailed": "Unable to load categories."
     }
   },
+    "units": {
+    "PIECE": "Piece",
+    "KG": "Kg",
+    "LITRE": "Liter",
+    "CARTON": "Carton",
+    "SACHET": "Sachet"
+  },
+  "pagination": {
+    "label": "Pagination",
+    "summary": "{{from}}–{{to}} of {{total}}",
+    "page": "Page {{page}} of {{totalPages}}",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "products": {
+    "title": "Products",
+    "subtitle": "Manage your catalog and track stock levels.",
+    "add": "Add a product",
+    "filters": {
+      "search": "Search by name or reference...",
+      "category": "Category",
+      "allCategories": "All categories",
+      "status": "Status",
+      "allStatuses": "All statuses",
+      "inStock": "In stock",
+      "lowStock": "On alert",
+      "view": "View",
+      "active": "Active products",
+      "inactive": "Deactivated products",
+      "reset": "Reset filters"
+    },
+    "columns": {
+      "reference": "Reference",
+      "name": "Name",
+      "category": "Category",
+      "unit": "Unit",
+      "quantity": "Stock quantity",
+      "threshold": "Alert threshold",
+      "status": "Status"
+    },
+    "sort": {
+      "by": "Sort by {{column}}"
+    },
+    "status": {
+      "ok": "In stock",
+      "low": "Low stock",
+      "out": "Out of stock"
+    },
+    "actions": {
+      "details": "View details of {{name}}",
+      "edit": "Edit {{name}}",
+      "deactivate": "Deactivate {{name}}",
+      "reactivate": "Reactivate {{name}}"
+    },
+    "empty": {
+      "title": "No products",
+      "description": "Add your first product to start tracking your stock.",
+      "noResultsTitle": "No results",
+      "noResultsDescription": "No product matches your filters."
+    },
+    "form": {
+      "createTitle": "New product",
+      "editTitle": "Edit product",
+      "helper": "Fill in the product details.",
+      "reference": "Reference",
+      "name": "Name",
+      "namePlaceholder": "E.g. Mineral water 1.5 L",
+      "category": "Category",
+      "categoryPlaceholder": "Choose a category",
+      "noCategories": "No category available. Create one first.",
+      "manageCategories": "Manage categories",
+      "unit": "Unit",
+      "unitPlaceholder": "Choose a unit",
+      "threshold": "Alert threshold",
+      "thresholdHint": "An alert is raised when the stock quantity is lower than or equal to this threshold.",
+      "description": "Description (optional)",
+      "initialStockInfo": "Stock quantity starts at 0. Add it with an incoming movement.",
+      "errors": {
+        "nameRequired": "Name is required.",
+        "nameTooLong": "Name must not exceed 150 characters.",
+        "categoryRequired": "Category is required.",
+        "unitRequired": "Unit is required.",
+        "thresholdInvalid": "Threshold must be a positive number (3 decimals maximum).",
+        "descriptionTooLong": "Description must not exceed 1000 characters."
+      }
+    },
+    "details": {
+      "title": "Product details",
+      "reference": "Reference",
+      "category": "Category",
+      "unit": "Unit",
+      "quantity": "Stock quantity",
+      "threshold": "Alert threshold",
+      "status": "Status",
+      "description": "Description",
+      "noDescription": "No description",
+      "createdAt": "Created on",
+      "updatedAt": "Updated on",
+      "close": "Close"
+    },
+    "deactivate": {
+      "title": "Deactivate this product?",
+      "description": "\"{{name}}\" will no longer appear in lists, but its movement history is kept. You can reactivate it at any time.",
+      "confirm": "Deactivate"
+    },
+    "toast": {
+      "created": "Product created.",
+      "updated": "Product updated.",
+      "deactivated": "Product deactivated.",
+      "reactivated": "Product reactivated."
+    },
+    "errors": {
+      "loadFailed": "Unable to load products."
+    }
+  },
   "auth": {
     "login": {
       "title": "Sign in",

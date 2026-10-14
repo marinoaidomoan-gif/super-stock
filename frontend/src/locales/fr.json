@@ -87,6 +87,121 @@
       "loadFailed": "Impossible de charger les catégories."
     }
   },
+    "units": {
+    "PIECE": "Pièce",
+    "KG": "Kg",
+    "LITRE": "Litre",
+    "CARTON": "Carton",
+    "SACHET": "Sachet"
+  },
+  "pagination": {
+    "label": "Pagination",
+    "summary": "{{from}}–{{to}} sur {{total}}",
+    "page": "Page {{page}} sur {{totalPages}}",
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "products": {
+    "title": "Produits",
+    "subtitle": "Gérez votre catalogue et suivez les niveaux de stock.",
+    "add": "Ajouter un produit",
+    "filters": {
+      "search": "Rechercher par nom ou référence...",
+      "category": "Catégorie",
+      "allCategories": "Toutes les catégories",
+      "status": "Statut",
+      "allStatuses": "Tous les statuts",
+      "inStock": "En stock",
+      "lowStock": "En alerte",
+      "view": "Affichage",
+      "active": "Produits actifs",
+      "inactive": "Produits désactivés",
+      "reset": "Réinitialiser les filtres"
+    },
+    "columns": {
+      "reference": "Référence",
+      "name": "Nom",
+      "category": "Catégorie",
+      "unit": "Unité",
+      "quantity": "Quantité en stock",
+      "threshold": "Seuil d'alerte",
+      "status": "Statut"
+    },
+    "sort": {
+      "by": "Trier par {{column}}"
+    },
+    "status": {
+      "ok": "En stock",
+      "low": "Stock bas",
+      "out": "Rupture"
+    },
+    "actions": {
+      "details": "Voir les détails de {{name}}",
+      "edit": "Modifier {{name}}",
+      "deactivate": "Désactiver {{name}}",
+      "reactivate": "Réactiver {{name}}"
+    },
+    "empty": {
+      "title": "Aucun produit",
+      "description": "Ajoutez votre premier produit pour commencer à suivre votre stock.",
+      "noResultsTitle": "Aucun résultat",
+      "noResultsDescription": "Aucun produit ne correspond à vos filtres."
+    },
+    "form": {
+      "createTitle": "Nouveau produit",
+      "editTitle": "Modifier le produit",
+      "helper": "Renseignez les informations du produit.",
+      "reference": "Référence",
+      "name": "Nom",
+      "namePlaceholder": "Ex. : Eau minérale 1,5 L",
+      "category": "Catégorie",
+      "categoryPlaceholder": "Choisir une catégorie",
+      "noCategories": "Aucune catégorie disponible. Créez-en une d'abord.",
+      "manageCategories": "Gérer les catégories",
+      "unit": "Unité",
+      "unitPlaceholder": "Choisir une unité",
+      "threshold": "Seuil d'alerte",
+      "thresholdHint": "Alerte lorsque la quantité en stock est inférieure ou égale à ce seuil.",
+      "description": "Description (facultatif)",
+      "initialStockInfo": "La quantité en stock démarre à 0. Ajoutez-la avec un mouvement d'entrée.",
+      "errors": {
+        "nameRequired": "Le nom est obligatoire.",
+        "nameTooLong": "Le nom ne doit pas dépasser 150 caractères.",
+        "categoryRequired": "La catégorie est obligatoire.",
+        "unitRequired": "L'unité est obligatoire.",
+        "thresholdInvalid": "Le seuil doit être un nombre positif (3 décimales maximum).",
+        "descriptionTooLong": "La description ne doit pas dépasser 1000 caractères."
+      }
+    },
+    "details": {
+      "title": "Détails du produit",
+      "reference": "Référence",
+      "category": "Catégorie",
+      "unit": "Unité",
+      "quantity": "Quantité en stock",
+      "threshold": "Seuil d'alerte",
+      "status": "Statut",
+      "description": "Description",
+      "noDescription": "Aucune description",
+      "createdAt": "Créé le",
+      "updatedAt": "Modifié le",
+      "close": "Fermer"
+    },
+    "deactivate": {
+      "title": "Désactiver le produit ?",
+      "description": "« {{name}} » n'apparaîtra plus dans les listes, mais son historique de mouvements est conservé. Vous pourrez le réactiver à tout moment.",
+      "confirm": "Désactiver"
+    },
+    "toast": {
+      "created": "Produit créé.",
+      "updated": "Produit modifié.",
+      "deactivated": "Produit désactivé.",
+      "reactivated": "Produit réactivé."
+    },
+    "errors": {
+      "loadFailed": "Impossible de charger les produits."
+    }
+  },
   "auth": {
     "login": {
       "title": "Connexion",
@@ -128,7 +243,7 @@
     "server": "Une erreur est survenue. Réessayez plus tard."
   },
 
-  
+
   "landing": {
     "openApp": "Accéder à l'application",
     "nav": {
