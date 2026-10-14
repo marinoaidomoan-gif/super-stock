@@ -7,6 +7,8 @@ import DashboardLayout from '@/components/layout/DashboardLayout'
 import { AuthProvider } from '@/contexts/AuthProvider'
 import { ROLES } from '@/lib/roles'
 
+import Landing from '@/pages/public/Landing.jsx'
+
 const Login = lazy(() => import('@/pages/public/Login'))
 const ForgotPassword = lazy(() => import('@/pages/public/ForgotPassword'))
 const Dashboard = lazy(() => import('@/pages/private/Dashboard'))
@@ -20,6 +22,7 @@ export default function App() {
         <AuthProvider>
           <Suspense fallback={<PageLoader />}>
             <Routes>
+              <Route path="/" element={<Landing />} />
               <Route path="/login" element={<Login />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
 

@@ -126,5 +126,101 @@
     "validation": "Données invalides.",
     "tooManyRequests": "Trop de tentatives. Réessayez dans une minute.",
     "server": "Une erreur est survenue. Réessayez plus tard."
+  },
+
+  
+  "landing": {
+    "openApp": "Accéder à l'application",
+    "nav": {
+      "features": "Fonctionnalités",
+      "how": "Comment ça marche",
+      "about": "À propos",
+      "contact": "Contact",
+      "openMenu": "Ouvrir le menu",
+      "closeMenu": "Fermer le menu"
+    },
+    "hero": {
+      "badge": "Gestion de stock pour supermarché",
+      "titleStart": "Gérez votre stock",
+      "titleAccent": "avec intelligence.",
+      "subtitle": "SuperStock, la solution moderne pour suivre vos produits, mouvements et inventaires en temps réel.",
+      "discover": "Découvrir"
+    },
+    "features": {
+      "title": "Tout pour piloter votre stock",
+      "subtitle": "Six modules pensés pour le quotidien d'un supermarché.",
+      "items": {
+        "products": {
+          "title": "Gestion des produits",
+          "text": "Un catalogue organisé par catégories, avec unités de vente, seuils d'alerte et références générées automatiquement."
+        },
+        "movements": {
+          "title": "Mouvements de stock",
+          "text": "Chaque entrée et chaque sortie est tracée. Une erreur se corrige par un mouvement inverse : rien n'est jamais effacé."
+        },
+        "inventory": {
+          "title": "Inventaire",
+          "text": "Comptez le stock réel, visualisez les écarts et validez : les corrections de stock sont créées pour vous."
+        },
+        "alerts": {
+          "title": "Alertes de stock bas",
+          "text": "Repérez en un coup d'œil les produits sous leur seuil, du plus critique au moins critique."
+        },
+        "roles": {
+          "title": "Rôles et sécurité",
+          "text": "Propriétaire, gérant, administrateur : chacun accède uniquement à ce dont il a besoin."
+        },
+        "stats": {
+          "title": "Statistiques",
+          "text": "Un tableau de bord avec les chiffres clés et des graphiques sur les entrées, les sorties et les catégories."
+        }
+      }
+    },
+    "how": {
+      "title": "Comment ça marche",
+      "subtitle": "Trois étapes pour prendre le contrôle de votre stock.",
+      "steps": {
+        "one": {
+          "title": "Organisez votre catalogue",
+          "text": "Créez vos catégories et vos produits avec leur unité et leur seuil d'alerte."
+        },
+        "two": {
+          "title": "Enregistrez vos mouvements",
+          "text": "Chaque entrée et chaque sortie met à jour le stock automatiquement."
+        },
+        "three": {
+          "title": "Pilotez en temps réel",
+          "text": "Suivez les alertes et le tableau de bord, et faites votre inventaire quand vous le souhaitez."
+        }
+      }
+    },
+    "stats": {
+      "title": "SuperStock en chiffres",
+      "roles": "rôles distincts",
+      "modules": "modules intégrés",
+      "languages": "langues (FR / EN)",
+      "traced": "des mouvements tracés"
+    },
+    "about": {
+      "title": "À propos",
+      "text": "SuperStock est un projet de gestion de stock réalisé avec React, NestJS et PostgreSQL. Il répond aux besoins d'un grand supermarché : suivre chaque produit, chaque entrée et chaque sortie, sans jamais perdre l'historique."
+    },
+    "contact": {
+      "title": "Contact",
+      "text": "Une question ou une démonstration ? Écrivez-nous.",
+      "email": "Email",
+      "address": "Adresse"
+    },
+    "cta": {
+      "title": "Prêt à optimiser votre gestion ?",
+      "subtitle": "Connectez-vous et reprenez le contrôle de votre stock."
+    },
+    "footer": {
+      "tagline": "La gestion de stock moderne.",
+      "navigation": "Navigation",
+      "follow": "Suivez-nous",
+      "rights": "Tous droits réservés.",
+      "madeWith": "Réalisé avec React, NestJS et PostgreSQL."
+    }
   }
 }

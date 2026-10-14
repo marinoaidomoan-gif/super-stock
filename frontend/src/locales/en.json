@@ -124,5 +124,102 @@
     "validation": "Invalid data.",
     "tooManyRequests": "Too many attempts. Try again in a minute.",
     "server": "Something went wrong. Please try again later."
-  }
+  },
+
+
+
+  "landing": {
+    "openApp": "Open the app",
+    "nav": {
+      "features": "Features",
+      "how": "How it works",
+      "about": "About",
+      "contact": "Contact",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu"
+    },
+    "hero": {
+      "badge": "Stock management for supermarkets",
+      "titleStart": "Manage your stock",
+      "titleAccent": "intelligently.",
+      "subtitle": "SuperStock, the modern solution to track your products, movements and inventories in real time.",
+      "discover": "Discover"
+    },
+    "features": {
+      "title": "Everything you need to run your stock",
+      "subtitle": "Six modules designed for the daily work of a supermarket.",
+      "items": {
+        "products": {
+          "title": "Product management",
+          "text": "A catalog organized by categories, with sale units, alert thresholds and automatically generated references."
+        },
+        "movements": {
+          "title": "Stock movements",
+          "text": "Every entry and every exit is tracked. A mistake is fixed with a reverse movement: nothing is ever erased."
+        },
+        "inventory": {
+          "title": "Inventory",
+          "text": "Count the real stock, see the gaps and validate: stock corrections are created for you."
+        },
+        "alerts": {
+          "title": "Low stock alerts",
+          "text": "Spot at a glance the products below their threshold, from the most to the least critical."
+        },
+        "roles": {
+          "title": "Roles and security",
+          "text": "Owner, manager, administrator: everyone only accesses what they need."
+        },
+        "stats": {
+          "title": "Statistics",
+          "text": "A dashboard with key figures and charts on entries, exits and categories."
+        }
+      }
+    },
+    "how": {
+      "title": "How it works",
+      "subtitle": "Three steps to take control of your stock.",
+      "steps": {
+        "one": {
+          "title": "Organize your catalog",
+          "text": "Create your categories and products with their unit and alert threshold."
+        },
+        "two": {
+          "title": "Record your movements",
+          "text": "Every entry and every exit updates the stock automatically."
+        },
+        "three": {
+          "title": "Stay in control in real time",
+          "text": "Follow alerts and the dashboard, and run an inventory whenever you want."
+        }
+      }
+    },
+    "stats": {
+      "title": "SuperStock in numbers",
+      "roles": "distinct roles",
+      "modules": "built-in modules",
+      "languages": "languages (FR / EN)",
+      "traced": "of movements tracked"
+    },
+    "about": {
+      "title": "About",
+      "text": "SuperStock is a stock management project built with React, NestJS and PostgreSQL. It meets the needs of a large supermarket: tracking every product, every entry and every exit, without ever losing the history."
+    },
+    "contact": {
+      "title": "Contact",
+      "text": "A question or a demo? Write to us.",
+      "email": "Email",
+      "address": "Address"
+    },
+    "cta": {
+      "title": "Ready to optimize your management?",
+      "subtitle": "Sign in and take back control of your stock."
+    },
+    "footer": {
+      "tagline": "Modern stock management.",
+      "navigation": "Navigation",
+      "follow": "Follow us",
+      "rights": "All rights reserved.",
+      "madeWith": "Built with React, NestJS and PostgreSQL."
+    }
+}
 }
