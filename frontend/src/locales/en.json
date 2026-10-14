@@ -259,6 +259,8 @@
       "reason": "Reason",
       "reasonPlaceholder": "Choose a reason",
       "comment": "Comment (optional)",
+        "supplier": "Supplier (optional)",
+      "supplierNone": "No supplier",
       "errors": {
         "productRequired": "Product is required.",
         "quantityInvalid": "Quantity must be a number greater than zero (3 decimals maximum).",

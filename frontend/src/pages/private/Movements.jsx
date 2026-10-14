@@ -247,15 +247,19 @@ export default function Movements() {
                         {t(`units.${movement.product?.unite}`)}
                       </span>
                     </TableCell>
-                    <TableCell className="hidden md:table-cell">{t(`movements.motifs.${movement.motif}`)}</TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      {t(`movements.motifs.${movement.motif}`)}
+                      {movement.supplier?.nom && (
+                        <p className="truncate text-xs text-muted-foreground">
+                          {t('movements.supplier', { name: movement.supplier.nom })}
+                        </p>
+                      )}
+                    </TableCell>
                     <TableCell className="hidden lg:table-cell">{movement.user?.nom}</TableCell>
                     <TableCell className="hidden max-w-64 xl:table-cell">
                       <p className="truncate text-muted-foreground" title={movement.commentaire ?? undefined}>
                         {movement.commentaire || '—'}
                       </p>
-                      {movement.supplier?.nom && (
-                        <p className="truncate text-xs">{t('movements.supplier', { name: movement.supplier.nom })}</p>
-                      )}
                     </TableCell>
                     <TableCell>
                       <div className="flex justify-end">

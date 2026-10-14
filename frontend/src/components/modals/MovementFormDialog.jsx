@@ -26,6 +26,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { useCreateMovement } from '@/hooks/useMovements'
 import { formatNumber } from '@/lib/format'
 import { getMovementError, INTEGER_UNITS, MOTIFS_BY_TYPE, QUANTITY_REGEX } from '@/lib/movements'
+import { useSuppliers } from '@/hooks/useSuppliers'
 
 export default function MovementFormDialog({ open, onOpenChange, initialValues = {}, onSuccess }) {
   const { t } = useTranslation()
@@ -55,22 +56,39 @@ function MovementForm({ initialValues, onDone, onSuccess }) {
     quantite: '',
     motif: initialValues.motif ?? '',
     commentaire: '',
+    supplierId: '',
   })
   const [errors, setErrors] = useState({})
 
   const unit = form.product?.unite
   const unitLabel = unit ? t(`units.${unit}`) : ''
   const integerOnly = INTEGER_UNITS.includes(unit)
+    // Le fournisseur n'existe que pour une réception : on ne charge la liste que dans ce cas.
+  const isReception = form.motif === 'RECEPTION'
+  const { data: suppliers = [] } = useSuppliers({}, { enabled: isReception })
 
   const setField = (name, value) => setForm((current) => ({ ...current, [name]: value }))
 
-  // Changer de type : on garde le motif seulement s'il existe aussi pour le nouveau type.
-  const changeType = (type) =>
+    // Changer de type : on garde le motif seulement s'il existe aussi pour le nouveau type.
+    // Le serveur refuse un fournisseur hors réception : on l'efface si le motif change.
+  const changeMotif = (motif) =>
     setForm((current) => ({
       ...current,
-      type,
-      motif: MOTIFS_BY_TYPE[type].includes(current.motif) ? current.motif : '',
+      motif,
+      supplierId: motif === 'RECEPTION' ? current.supplierId : '',
     }))
+
+  // Changer de type : on garde le motif seulement s'il existe aussi pour le nouveau type.
+  const changeType = (type) =>
+    setForm((current) => {
+      const motif = MOTIFS_BY_TYPE[type].includes(current.motif) ? current.motif : ''
+      return {
+        ...current,
+        type,
+        motif,
+        supplierId: motif === 'RECEPTION' ? current.supplierId : '',
+      }
+    })
 
   const validate = () => {
     const next = {}
@@ -111,6 +129,7 @@ function MovementForm({ initialValues, onDone, onSuccess }) {
         quantite: Number(form.quantite.trim()),
         motif: form.motif,
         commentaire: form.commentaire.trim() || null,
+        supplierId: isReception && form.supplierId ? Number(form.supplierId) : null,
       },
       {
         onSuccess: () => {
@@ -161,6 +180,28 @@ function MovementForm({ initialValues, onDone, onSuccess }) {
           <FieldError id="movement-motif-error" message={errors.motif} />
         </div>
       </div>
+
+            {isReception && (
+                <div className="space-y-2">
+                <Label htmlFor="movement-supplier">{t('movements.form.supplier')}</Label>
+                <Select
+                    value={form.supplierId || 'none'}
+                    onValueChange={(value) => setField('supplierId', value === 'none' ? '' : value)}
+                >
+                    <SelectTrigger id="movement-supplier" className="w-full">
+                    <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                    <SelectItem value="none">{t('movements.form.supplierNone')}</SelectItem>
+                    {suppliers.map((supplier) => (
+                        <SelectItem key={supplier.id} value={String(supplier.id)}>
+                        {supplier.nom}
+                        </SelectItem>
+                    ))}
+                    </SelectContent>
+                </Select>
+                </div>
+            )}
 
       <div className="space-y-2">
         <Label htmlFor="movement-product">{t('movements.form.product')}</Label>

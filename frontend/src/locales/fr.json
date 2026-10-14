@@ -261,6 +261,8 @@
       "reason": "Motif",
       "reasonPlaceholder": "Choisir un motif",
       "comment": "Commentaire (facultatif)",
+        "supplier": "Fournisseur (facultatif)",
+      "supplierNone": "Aucun fournisseur",
       "errors": {
         "productRequired": "Le produit est obligatoire.",
         "quantityInvalid": "La quantité doit être un nombre supérieur à zéro (3 décimales maximum).",
@@ -312,6 +314,65 @@
       "loadFailed": "Impossible de charger les alertes."
     }
   },
+    "suppliers": {
+    "title": "Fournisseurs",
+    "subtitle": "Gérez les entreprises qui approvisionnent votre stock.",
+    "add": "Ajouter un fournisseur",
+    "search": "Rechercher un fournisseur...",
+    "columns": {
+      "name": "Nom",
+      "phone": "Téléphone",
+      "email": "Email",
+      "address": "Adresse",
+      "deliveries": "Approvisionnements"
+    },
+    "deliveriesCount_one": "{{count}} approvisionnement",
+    "deliveriesCount_many": "{{count}} approvisionnements",
+    "deliveriesCount_other": "{{count}} approvisionnements",
+    "actions": {
+      "edit": "Modifier {{name}}",
+      "delete": "Supprimer {{name}}"
+    },
+    "empty": {
+      "title": "Aucun fournisseur",
+      "description": "Ajoutez vos fournisseurs pour suivre vos réceptions de stock.",
+      "noResultsTitle": "Aucun résultat",
+      "noResultsDescription": "Aucun fournisseur ne correspond à votre recherche."
+    },
+    "form": {
+      "createTitle": "Nouveau fournisseur",
+      "editTitle": "Modifier le fournisseur",
+      "helper": "Seul le nom est obligatoire.",
+      "name": "Nom",
+      "namePlaceholder": "Ex. : Grossiste du Marché",
+      "phone": "Téléphone (facultatif)",
+      "email": "Email (facultatif)",
+      "address": "Adresse (facultatif)",
+      "errors": {
+        "nameRequired": "Le nom est obligatoire.",
+        "nameTooLong": "Le nom ne doit pas dépasser 150 caractères.",
+        "phoneTooLong": "Le téléphone ne doit pas dépasser 30 caractères.",
+        "emailInvalid": "L'adresse email n'est pas valide.",
+        "emailTooLong": "L'email ne doit pas dépasser 150 caractères.",
+        "addressTooLong": "L'adresse ne doit pas dépasser 255 caractères."
+      }
+    },
+    "delete": {
+      "title": "Supprimer le fournisseur ?",
+      "description": "Le fournisseur « {{name}} » sera définitivement supprimé.",
+      "confirm": "Supprimer"
+    },
+    "toast": {
+      "created": "Fournisseur créé.",
+      "updated": "Fournisseur modifié.",
+      "deleted": "Fournisseur supprimé."
+    },
+    "errors": {
+      "loadFailed": "Impossible de charger les fournisseurs.",
+      "hasMovements": "Impossible de supprimer ce fournisseur : il est lié à des mouvements de stock."
+    }
+  },
+  
   "auth": {
     "login": {
       "title": "Connexion",

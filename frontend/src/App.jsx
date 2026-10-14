@@ -17,6 +17,7 @@ const Categories = lazy(() => import('@/pages/private/Categories'))
 const Products = lazy(() => import('@/pages/private/Products'))
 const Movements = lazy(() => import('@/pages/private/Movements'))
 const Alerts = lazy(() => import('@/pages/private/Alerts'))
+const Suppliers = lazy(() => import('@/pages/private/Suppliers'))
 
 export default function App() {
   return (
@@ -46,7 +47,7 @@ export default function App() {
 
                   {/* Propriétaire uniquement */}
                   <Route element={<ProtectedRoute roles={[ROLES.PROPRIETAIRE]} />}>
-                    <Route path="/fournisseurs" element={<Placeholder titleKey="nav.fournisseurs" />} />
+                    <Route path="/fournisseurs" element={<Suppliers />} />
                     <Route path="/inventaire" element={<Placeholder titleKey="nav.inventaire" />} />
                   </Route>
 
