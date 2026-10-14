@@ -21,5 +21,5 @@ export const NAV_ITEMS = [
   { key: 'inventaire', to: '/inventaire', icon: ClipboardCheck, roles: [ROLES.PROPRIETAIRE] },
   { key: 'alertes', to: '/alertes', icon: BellRing, roles: [ROLES.GERANT] },
   { key: 'utilisateurs', to: '/utilisateurs', icon: Users, roles: [ROLES.ADMINISTRATEUR] },
-  { key: 'historique', to: '/historique', icon: History },
+  { key: 'historique', to: '/historique', icon: History, roles: [ROLES.ADMINISTRATEUR]},
 ]

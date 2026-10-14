@@ -34,6 +34,12 @@
   },
   "layout": {
     "menu": "Menu",
+    "workspace": "Workspace",
+    "stockManagement": "Stock management",
+    "about": "About SuperStock",
+    "stockHealthTitle": "Your stock, under control",
+    "stockHealthSubtitle": "Informed decisions, every day.",
+    "viewActivity": "View your activity",
     "toggleSidebar": "Toggle sidebar",
     "search": "Search products...",
     "skipToContent": "Skip to content",
@@ -436,7 +442,81 @@
   },
   "dashboard": {
     "welcome": "Welcome, {{name}}",
-    "role": "Role: {{role}}"
+    "role": "Role: {{role}}",
+    "greeting": "Hello, {{name}}",
+    "subtitle": "Here's what's happening in your stock today.",
+    "newMovement": "New movement",
+    "overview": "Overview",
+    "updatedRealtime": "Updated in real time",
+    "stats": {
+      "products": "Products in stock",
+      "unitsSub": "{{count}} units available",
+      "activeTag": "Active catalog",
+      "alerts": "Low stock alerts",
+      "alertsSub": "Products to restock",
+      "noAlertsSub": "All your stock is up to date",
+      "actionRequired": "Action required",
+      "allGood": "All good",
+      "value": "Total stock value",
+      "activeUsers": "Active users",
+      "categories": "Product categories",
+      "valueSub": "Valued at purchase price",
+      "categoriesSub": "Simplified organization",
+      "financial": "Financial view",
+      "global": "Global view",
+      "today": "Movements today",
+      "todaySub": "{{entries}} entries · {{exits}} exits",
+      "realtime": "Real time"
+    },
+    "charts": {
+      "evolutionTitle": "Movement trends",
+      "evolutionSubtitle": "Track your stock entries and exits",
+      "period": "Period",
+      "last7": "Last 7 days",
+      "last3": "Last 3 days",
+      "entries": "Entries",
+      "exits": "Exits",
+      "units": "units",
+      "footLeft": "A clear view of your activity",
+      "footRight": "Quantities in units",
+      "categoriesTitle": "Breakdown by category",
+      "categoriesSubtitle": "A well-organized catalog",
+      "productsLabel": "Products",
+      "totalProducts": "products total"
+    },
+    "movements": {
+      "title": "Recent movements",
+      "subtitle": "Recent activity in your warehouse",
+      "viewAll": "View all",
+      "product": "PRODUCT",
+      "type": "TYPE",
+      "quantity": "QUANTITY",
+      "date": "DATE",
+      "emptyTitle": "No movements",
+      "emptyDescription": "Record your first stock entry."
+    },
+    "alerts": {
+      "title": "Watchlist",
+      "subtitle": "These products need attention",
+      "inStock": "in stock",
+      "threshold": "threshold",
+      "restock": "Restock",
+      "emptyTitle": "All good",
+      "emptyDescription": "No low stock alerts.",
+      "viewAll": "View all alerts"
+    },
+    "top": {
+      "title": "Most moved products",
+      "subtitle": "The 5 products driving your stock",
+      "allMovements": "All movements"
+    },
+    "admin": {
+      "title": "Account administration",
+      "subtitle": "Manage access to your workspace",
+      "manageUsers": "Manage users",
+      "comingSoon": "Coming soon",
+      "comingSoonDescription": "The user management page is coming soon."
+    }
   },
   "errors": {
     "network": "Unable to reach the server. Check your connection.",

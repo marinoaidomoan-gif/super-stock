@@ -35,6 +35,12 @@
   },
   "layout": {
     "menu": "Menu",
+    "workspace": "Espace de travail",
+    "stockManagement": "Gestion du stock",
+    "about": "À propos de SuperStock",
+    "stockHealthTitle": "Votre stock, sous contrôle",
+    "stockHealthSubtitle": "Des décisions éclairées, chaque jour.",
+    "viewActivity": "Consulter votre activité",
     "toggleSidebar": "Afficher ou masquer le menu latéral",
     "search": "Rechercher un produit...",
     "skipToContent": "Aller au contenu",
@@ -497,7 +503,81 @@
   },
   "dashboard": {
     "welcome": "Bienvenue, {{name}}",
-    "role": "Rôle : {{role}}"
+    "role": "Rôle : {{role}}",
+    "greeting": "Bonjour, {{name}}",
+    "subtitle": "Voici ce qui se passe dans votre stock aujourd'hui.",
+    "newMovement": "Nouveau mouvement",
+    "overview": "Vue d'ensemble",
+    "updatedRealtime": "Mis à jour en temps réel",
+    "stats": {
+      "products": "Produits en stock",
+      "unitsSub": "{{count}} unités disponibles",
+      "activeTag": "Catalogue actif",
+      "alerts": "Alertes de stock bas",
+      "alertsSub": "Produits à réapprovisionner",
+      "noAlertsSub": "Tous vos stocks sont à jour",
+      "actionRequired": "Action requise",
+      "allGood": "Tout est en ordre",
+      "value": "Valeur totale du stock",
+      "activeUsers": "Utilisateurs actifs",
+      "categories": "Catégories de produits",
+      "valueSub": "Valorisation au prix d'achat",
+      "categoriesSub": "Une organisation simplifiée",
+      "financial": "Vue financière",
+      "global": "Vue globale",
+      "today": "Mouvements aujourd'hui",
+      "todaySub": "{{entries}} entrées · {{exits}} sorties",
+      "realtime": "En temps réel"
+    },
+    "charts": {
+      "evolutionTitle": "Évolution des mouvements",
+      "evolutionSubtitle": "Suivez les entrées et sorties de votre stock",
+      "period": "Période",
+      "last7": "7 derniers jours",
+      "last3": "3 derniers jours",
+      "entries": "Entrées",
+      "exits": "Sorties",
+      "units": "unités",
+      "footLeft": "Une vision claire de votre activité",
+      "footRight": "Quantités en unités",
+      "categoriesTitle": "Répartition par catégorie",
+      "categoriesSubtitle": "Un catalogue bien organisé",
+      "productsLabel": "Produits",
+      "totalProducts": "produits au total"
+    },
+    "movements": {
+      "title": "Derniers mouvements",
+      "subtitle": "L'activité récente de votre entrepôt",
+      "viewAll": "Tout voir",
+      "product": "PRODUIT",
+      "type": "TYPE",
+      "quantity": "QUANTITÉ",
+      "date": "DATE",
+      "emptyTitle": "Aucun mouvement",
+      "emptyDescription": "Enregistrez votre première entrée de stock."
+    },
+    "alerts": {
+      "title": "À surveiller",
+      "subtitle": "Ces produits ont besoin d'attention",
+      "inStock": "en stock",
+      "threshold": "seuil",
+      "restock": "Réapprovisionner",
+      "emptyTitle": "Tout est en ordre",
+      "emptyDescription": "Aucune alerte de stock bas.",
+      "viewAll": "Voir toutes les alertes"
+    },
+    "top": {
+      "title": "Produits les plus mouvementés",
+      "subtitle": "Les 5 produits qui font vivre votre stock",
+      "allMovements": "Tous les mouvements"
+    },
+    "admin": {
+      "title": "Administration des comptes",
+      "subtitle": "Gérez les accès à votre espace de travail",
+      "manageUsers": "Gérer les utilisateurs",
+      "comingSoon": "Bientôt disponible",
+      "comingSoonDescription": "La page de gestion des utilisateurs arrive prochainement."
+    }
   },
   "errors": {
     "network": "Impossible de joindre le serveur. Vérifiez votre connexion.",
