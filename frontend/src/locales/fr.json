@@ -1,5 +1,5 @@
 {
-    "common": {
+  "common": {
     "appName": "SuperStock",
     "language": "Langue",
     "loading": "Chargement...",
@@ -9,11 +9,14 @@
     "edit": "Modifier",
     "delete": "Supprimer",
     "actions": "Actions",
+    "pleaseWait": "Veuillez patienter…",
+    "previous": "Précédent",
+    "next": "Suivant",
     "theme": {
       "toggle": "Changer de thème"
     }
   },
-    "nav": {
+  "nav": {
     "dashboard": "Tableau de bord",
     "produits": "Produits",
     "categories": "Catégories",
@@ -44,7 +47,7 @@
     "userMenu": "Menu utilisateur",
     "comingSoon": "Cette page arrive bientôt."
   },
-    "categories": {
+  "categories": {
     "title": "Catégories",
     "subtitle": "Organisez vos produits par catégorie.",
     "add": "Ajouter une catégorie",
@@ -87,7 +90,7 @@
       "loadFailed": "Impossible de charger les catégories."
     }
   },
-    "units": {
+  "units": {
     "PIECE": "Pièce",
     "KG": "Kg",
     "LITRE": "Litre",
@@ -202,7 +205,7 @@
       "loadFailed": "Impossible de charger les produits."
     }
   },
-    "movements": {
+  "movements": {
     "title": "Mouvements",
     "subtitle": "Suivez toutes les entrées et sorties de stock.",
     "add": "Nouveau mouvement",
@@ -261,7 +264,7 @@
       "reason": "Motif",
       "reasonPlaceholder": "Choisir un motif",
       "comment": "Commentaire (facultatif)",
-        "supplier": "Fournisseur (facultatif)",
+      "supplier": "Fournisseur (facultatif)",
       "supplierNone": "Aucun fournisseur",
       "errors": {
         "productRequired": "Le produit est obligatoire.",
@@ -289,7 +292,101 @@
       "conflict": "Action impossible pour le moment (inventaire en cours, produit désactivé ou mouvement déjà corrigé)."
     }
   },
-    "alerts": {
+  "inventory": {
+    "title": "Inventaire",
+    "subtitle": "Comptez le stock réel, visualisez les écarts et corrigez le stock en un clic.",
+    "loadError": "Impossible de charger les inventaires.",
+    "status": {
+      "EN_COURS": "En cours",
+      "VALIDE": "Validé"
+    },
+    "launch": {
+      "title": "Aucun inventaire en cours",
+      "text": "Lancez un inventaire pour comparer le stock du système au stock réel compté en magasin. Les écarts seront corrigés automatiquement à la validation.",
+      "button": "Lancer un inventaire",
+      "dialogTitle": "Lancer un inventaire ?",
+      "dialogText": "Une photo du stock actuel de tous les produits actifs sera prise. Les mouvements de stock seront suspendus jusqu'à la validation ou l'annulation de l'inventaire.",
+      "commentLabel": "Commentaire (facultatif)",
+      "commentPlaceholder": "Ex. : inventaire de fin de mois",
+      "confirm": "Lancer l'inventaire"
+    },
+    "current": {
+      "title": "Inventaire n°{{id}}",
+      "startedBy": "Lancé par {{nom}} le {{date}}",
+      "frozen": "Les mouvements de stock sont suspendus tant que cet inventaire n'est pas validé ou annulé.",
+      "progress": "{{done}} / {{total}} produits comptés",
+      "differences": "{{count}} écart(s) détecté(s)"
+    },
+    "toolbar": {
+      "search": "Rechercher un produit ou une référence",
+      "filters": "Filtres",
+      "all": "Tous",
+      "toCount": "À compter",
+      "differences": "Écarts",
+      "save": "Enregistrer le comptage ({{count}})",
+      "validate": "Valider l'inventaire",
+      "cancel": "Annuler l'inventaire",
+      "invalidEntries": "Corrigez les quantités invalides (nombre positif, 3 décimales maximum).",
+      "savePending": "Enregistrez le comptage avant de valider.",
+      "notAllCounted": "Comptez tous les produits pour pouvoir valider."
+    },
+    "table": {
+      "product": "Produit",
+      "unit": "Unité",
+      "theoretical": "Théorique",
+      "counted": "Compté",
+      "difference": "Écart",
+      "empty": "Aucun produit ne correspond.",
+      "countedFor": "Quantité comptée pour {{nom}}"
+    },
+    "units": {
+      "PIECE": "Pièce",
+      "KG": "Kg",
+      "LITRE": "Litre",
+      "CARTON": "Carton",
+      "SACHET": "Sachet"
+    },
+    "confirmValidate": {
+      "title": "Valider l'inventaire ?",
+      "text": "Le stock sera ajusté à la quantité comptée : {{count}} mouvement(s) de correction seront créés. Cette action est définitive.",
+      "confirm": "Valider"
+    },
+    "confirmCancel": {
+      "title": "Annuler l'inventaire ?",
+      "text": "Le comptage saisi sera perdu. Le stock n'a pas été modifié et les mouvements de stock seront de nouveau autorisés.",
+      "confirm": "Annuler l'inventaire"
+    },
+    "toast": {
+      "launched": "Inventaire lancé.",
+      "saved": "Comptage enregistré.",
+      "validated": "Inventaire validé : le stock a été corrigé.",
+      "cancelled": "Inventaire annulé."
+    },
+    "history": {
+      "title": "Historique des inventaires",
+      "empty": "Aucun inventaire validé pour le moment.",
+      "launchedAt": "Lancé le",
+      "launchedBy": "Par",
+      "validatedAt": "Validé le",
+      "products": "Produits",
+      "differences": "Écarts",
+      "view": "Voir le détail",
+      "page": "Page {{page}} sur {{total}}"
+    },
+    "detail": {
+      "title": "Inventaire n°{{id}}",
+      "back": "Retour aux inventaires",
+      "print": "Imprimer",
+      "notFound": "Inventaire introuvable.",
+      "validatedOn": "Validé le {{date}}",
+      "continueCounting": "Reprendre le comptage",
+      "summaryProducts": "Produits inventoriés",
+      "summaryCounted": "Produits comptés",
+      "summaryDifferences": "Produits avec écart",
+      "onlyDifferences": "Écarts uniquement"
+    }
+  },
+  "alerts": {
     "title": "Alertes de stock",
     "subtitle": "Produits dont la quantité est inférieure ou égale au seuil d'alerte, du plus critique au moins critique.",
     "filters": {
@@ -314,7 +411,7 @@
       "loadFailed": "Impossible de charger les alertes."
     }
   },
-    "suppliers": {
+  "suppliers": {
     "title": "Fournisseurs",
     "subtitle": "Gérez les entreprises qui approvisionnent votre stock.",
     "add": "Ajouter un fournisseur",
@@ -372,7 +469,6 @@
       "hasMovements": "Impossible de supprimer ce fournisseur : il est lié à des mouvements de stock."
     }
   },
-  
   "auth": {
     "login": {
       "title": "Connexion",
@@ -413,8 +509,6 @@
     "tooManyRequests": "Trop de tentatives. Réessayez dans une minute.",
     "server": "Une erreur est survenue. Réessayez plus tard."
   },
-
-
   "landing": {
     "openApp": "Accéder à l'application",
     "nav": {

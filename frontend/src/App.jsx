@@ -18,6 +18,8 @@ const Products = lazy(() => import('@/pages/private/Products'))
 const Movements = lazy(() => import('@/pages/private/Movements'))
 const Alerts = lazy(() => import('@/pages/private/Alerts'))
 const Suppliers = lazy(() => import('@/pages/private/Suppliers'))
+import Inventory from '@/pages/private/Inventory.jsx'
+import InventoryDetail from '@/pages/private/InventoryDetail.jsx'
 
 export default function App() {
   return (
@@ -48,7 +50,8 @@ export default function App() {
                   {/* Propriétaire uniquement */}
                   <Route element={<ProtectedRoute roles={[ROLES.PROPRIETAIRE]} />}>
                     <Route path="/fournisseurs" element={<Suppliers />} />
-                    <Route path="/inventaire" element={<Placeholder titleKey="nav.inventaire" />} />
+                    <Route path="/inventaire" element={<Inventory />} />
+                    <Route path="/inventaire/:id" element={<InventoryDetail />} />
                   </Route>
 
                   {/* Administrateur système uniquement */}

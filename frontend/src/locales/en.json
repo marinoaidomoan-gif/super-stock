@@ -9,11 +9,13 @@
     "edit": "Edit",
     "delete": "Delete",
     "actions": "Actions",
+    "previous": "Previous",
+    "next": "Next",
     "theme": {
       "toggle": "Toggle theme"
     }
   },
-    "nav": {
+  "nav": {
     "dashboard": "Dashboard",
     "produits": "Products",
     "categories": "Categories",
@@ -43,7 +45,7 @@
     "userMenu": "User menu",
     "comingSoon": "This page is coming soon."
   },
-    "categories": {
+  "categories": {
     "title": "Categories",
     "subtitle": "Organize your products by category.",
     "add": "Add a category",
@@ -85,7 +87,7 @@
       "loadFailed": "Unable to load categories."
     }
   },
-    "units": {
+  "units": {
     "PIECE": "Piece",
     "KG": "Kg",
     "LITRE": "Liter",
@@ -200,7 +202,7 @@
       "loadFailed": "Unable to load products."
     }
   },
-    "movements": {
+  "movements": {
     "title": "Movements",
     "subtitle": "Track all incoming and outgoing stock.",
     "add": "New movement",
@@ -259,7 +261,7 @@
       "reason": "Reason",
       "reasonPlaceholder": "Choose a reason",
       "comment": "Comment (optional)",
-        "supplier": "Supplier (optional)",
+      "supplier": "Supplier (optional)",
       "supplierNone": "No supplier",
       "errors": {
         "productRequired": "Product is required.",
@@ -287,7 +289,101 @@
       "conflict": "Action not possible right now (inventory in progress, product deactivated or movement already corrected)."
     }
   },
-    "alerts": {
+  "inventory": {
+    "title": "Inventory",
+    "subtitle": "Count the real stock, see the gaps and correct the stock in one click.",
+    "loadError": "Unable to load inventories.",
+    "status": {
+      "EN_COURS": "In progress",
+      "VALIDE": "Validated"
+    },
+    "launch": {
+      "title": "No inventory in progress",
+      "text": "Start an inventory to compare the system stock with the real stock counted in the store. Gaps are corrected automatically on validation.",
+      "button": "Start an inventory",
+      "dialogTitle": "Start an inventory?",
+      "dialogText": "A snapshot of the current stock of all active products will be taken. Stock movements will be suspended until the inventory is validated or cancelled.",
+      "commentLabel": "Comment (optional)",
+      "commentPlaceholder": "E.g. end-of-month inventory",
+      "confirm": "Start the inventory"
+    },
+    "current": {
+      "title": "Inventory #{{id}}",
+      "startedBy": "Started by {{nom}} on {{date}}",
+      "frozen": "Stock movements are suspended until this inventory is validated or cancelled.",
+      "progress": "{{done}} / {{total}} products counted",
+      "differences": "{{count}} gap(s) found"
+    },
+    "toolbar": {
+      "search": "Search a product or a reference",
+      "filters": "Filters",
+      "all": "All",
+      "toCount": "To count",
+      "differences": "Gaps",
+      "save": "Save count ({{count}})",
+      "validate": "Validate inventory",
+      "cancel": "Cancel inventory",
+      "invalidEntries": "Fix the invalid quantities (positive number, 3 decimals maximum).",
+      "savePending": "Save the count before validating.",
+      "notAllCounted": "Count every product to be able to validate."
+    },
+    "table": {
+      "product": "Product",
+      "unit": "Unit",
+      "theoretical": "Expected",
+      "counted": "Counted",
+      "difference": "Gap",
+      "empty": "No matching product.",
+      "countedFor": "Counted quantity for {{nom}}"
+    },
+    "units": {
+      "PIECE": "Piece",
+      "KG": "Kg",
+      "LITRE": "Litre",
+      "CARTON": "Carton",
+      "SACHET": "Sachet"
+    },
+    "confirmValidate": {
+      "title": "Validate the inventory?",
+      "text": "The stock will be adjusted to the counted quantity: {{count}} correction movement(s) will be created. This action is final.",
+      "confirm": "Validate"
+    },
+    "confirmCancel": {
+      "title": "Cancel the inventory?",
+      "text": "The entered count will be lost. The stock has not been modified and stock movements will be allowed again.",
+      "confirm": "Cancel the inventory"
+    },
+    "toast": {
+      "launched": "Inventory started.",
+      "saved": "Count saved.",
+      "validated": "Inventory validated: the stock has been corrected.",
+      "cancelled": "Inventory cancelled."
+    },
+    "history": {
+      "title": "Inventory history",
+      "empty": "No validated inventory yet.",
+      "launchedAt": "Started on",
+      "launchedBy": "By",
+      "validatedAt": "Validated on",
+      "products": "Products",
+      "differences": "Gaps",
+      "view": "View details",
+      "page": "Page {{page}} of {{total}}"
+    },
+    "detail": {
+      "title": "Inventory #{{id}}",
+      "back": "Back to inventories",
+      "print": "Print",
+      "notFound": "Inventory not found.",
+      "validatedOn": "Validated on {{date}}",
+      "continueCounting": "Resume counting",
+      "summaryProducts": "Products inventoried",
+      "summaryCounted": "Products counted",
+      "summaryDifferences": "Products with a gap",
+      "onlyDifferences": "Gaps only"
+    }
+  },
+  "alerts": {
     "title": "Stock alerts",
     "subtitle": "Products whose quantity is at or below the alert threshold, from most to least critical.",
     "filters": {
@@ -352,9 +448,6 @@
     "tooManyRequests": "Too many attempts. Try again in a minute.",
     "server": "Something went wrong. Please try again later."
   },
-
-
-
   "landing": {
     "openApp": "Open the app",
     "nav": {
@@ -448,5 +541,5 @@
       "rights": "All rights reserved.",
       "madeWith": "Built with React, NestJS and PostgreSQL."
     }
-}
+  }
 }

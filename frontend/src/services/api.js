@@ -1,7 +1,8 @@
+// src/services/api.js (ou src/lib/api.js, selon où il est)
 import axios from 'axios'
 import { authStorage } from '@/lib/auth-storage'
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 })
 
@@ -32,5 +33,16 @@ api.interceptors.response.use(
     return Promise.reject(error)
   },
 )
+
+// Extrait un message d'erreur lisible depuis une erreur Axios.
+// Utilisé par les composants (CountingPanel, LaunchInventoryCard, etc.).
+export function messageErreur(error) {
+  return (
+    error?.response?.data?.message ||
+    error?.response?.data?.error ||
+    error?.message ||
+    'Une erreur est survenue'
+  )
+}
 
 export default api
