@@ -287,6 +287,31 @@
       "conflict": "Action impossible pour le moment (inventaire en cours, produit désactivé ou mouvement déjà corrigé)."
     }
   },
+    "alerts": {
+    "title": "Alertes de stock",
+    "subtitle": "Produits dont la quantité est inférieure ou égale au seuil d'alerte, du plus critique au moins critique.",
+    "filters": {
+      "category": "Catégorie",
+      "allCategories": "Toutes les catégories"
+    },
+    "columns": {
+      "product": "Produit",
+      "category": "Catégorie",
+      "stock": "Stock",
+      "threshold": "Seuil",
+      "status": "Statut"
+    },
+    "restock": "Réapprovisionner",
+    "restockLabel": "Réapprovisionner {{name}}",
+    "empty": {
+      "title": "Aucune alerte",
+      "description": "Tous vos produits sont au-dessus de leur seuil d'alerte.",
+      "noResultsDescription": "Aucune alerte pour cette catégorie."
+    },
+    "errors": {
+      "loadFailed": "Impossible de charger les alertes."
+    }
+  },
   "auth": {
     "login": {
       "title": "Connexion",

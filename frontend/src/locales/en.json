@@ -285,6 +285,31 @@
       "conflict": "Action not possible right now (inventory in progress, product deactivated or movement already corrected)."
     }
   },
+    "alerts": {
+    "title": "Stock alerts",
+    "subtitle": "Products whose quantity is at or below the alert threshold, from most to least critical.",
+    "filters": {
+      "category": "Category",
+      "allCategories": "All categories"
+    },
+    "columns": {
+      "product": "Product",
+      "category": "Category",
+      "stock": "Stock",
+      "threshold": "Threshold",
+      "status": "Status"
+    },
+    "restock": "Restock",
+    "restockLabel": "Restock {{name}}",
+    "empty": {
+      "title": "No alerts",
+      "description": "All your products are above their alert threshold.",
+      "noResultsDescription": "No alerts for this category."
+    },
+    "errors": {
+      "loadFailed": "Unable to load alerts."
+    }
+  },
   "auth": {
     "login": {
       "title": "Sign in",

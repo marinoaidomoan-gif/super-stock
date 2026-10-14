@@ -1,6 +1,7 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { CATEGORIES_KEY } from '@/hooks/useCategories'
 import { productService } from '@/services/productService'
+import { ALERTS_KEY } from '@/hooks/useAlerts'
 
 export const PRODUCTS_KEY = ['products']
 
@@ -22,7 +23,9 @@ function useProductMutation(mutationFn) {
         queryClient.invalidateQueries({ queryKey: PRODUCTS_KEY }),
         // Le nombre de produits par catégorie change aussi.
         queryClient.invalidateQueries({ queryKey: CATEGORIES_KEY }),
-      ]),
+        // Le seuil ou l'état actif d'un produit change la liste des alertes.
+        queryClient.invalidateQueries({ queryKey: ALERTS_KEY }),
+    ]),
   })
 }
 

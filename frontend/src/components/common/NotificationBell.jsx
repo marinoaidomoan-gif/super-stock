@@ -11,9 +11,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useLowStockAlerts } from '@/hooks/useLowStockAlerts'
+import { formatNumber } from '@/lib/format'
 
 export default function NotificationBell() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const locale = i18n.resolvedLanguage
   const { items, count } = useLowStockAlerts()
 
   return (
@@ -42,12 +44,20 @@ export default function NotificationBell() {
         {items.length === 0 ? (
           <p className="px-2 py-6 text-center text-sm text-muted-foreground">{t('layout.noAlerts')}</p>
         ) : (
+          // Les alertes arrivent triées du plus critique au moins critique.
           items.slice(0, 5).map((item) => (
             <DropdownMenuItem key={item.id} asChild>
-              {/* Les noms de champs (nom, quantiteStock) et la route du détail seront confirmés à l'étape Produits. */}
-              <Link to={`/produits/${item.id}`} className="flex justify-between gap-2">
-                <span className="truncate">{item.nom}</span>
-                <span className="text-xs text-muted-foreground">{item.quantiteStock}</span>
+              <Link
+                to={`/produits?search=${encodeURIComponent(item.reference)}`}
+                className="flex items-center justify-between gap-3"
+              >
+                <span className="min-w-0">
+                  <span className="block truncate">{item.nom}</span>
+                  <span className="block font-mono text-xs text-muted-foreground">{item.reference}</span>
+                </span>
+                <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+                  {formatNumber(item.quantiteStock, locale)} / {formatNumber(item.seuilAlerte, locale)}
+                </span>
               </Link>
             </DropdownMenuItem>
           ))

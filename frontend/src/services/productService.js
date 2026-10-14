@@ -20,4 +20,10 @@ export const productService = {
   async remove(id) {
     await api.delete(`/products/${id}`)
   },
+
+// Produits actifs dont le stock est au seuil ou en dessous, du plus critique au moins critique.
+  async alerts(params) {
+    const { data } = await api.get('/products/alertes/stock-bas', { params })
+    return data // tableau de produits (pas de pagination)
+  },
 }

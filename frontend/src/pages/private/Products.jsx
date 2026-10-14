@@ -50,7 +50,7 @@ const DEFAULT_FILTERS = {
 export default function Products() {
   const { t, i18n } = useTranslation()
   const locale = i18n.resolvedLanguage
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   // La recherche de l'en-tête arrive par l'adresse (/produits?search=...).
   const urlSearch = searchParams.get('search') ?? ''
@@ -113,6 +113,9 @@ export default function Products() {
   const resetFilters = () => {
     setSearchInput('')
     setFilters(DEFAULT_FILTERS)
+    // Retire aussi ?search=... de l'adresse pour que la prochaine recherche venue de l'en-tête
+    // ou de la cloche soit bien prise en compte.
+    setSearchParams({}, { replace: true })
   }
 
   // Si la dernière ligne d'une page disparaît de la liste, on recule d'une page.

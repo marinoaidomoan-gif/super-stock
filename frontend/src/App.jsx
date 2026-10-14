@@ -16,6 +16,7 @@ const Placeholder = lazy(() => import('@/pages/private/Placeholder'))
 const Categories = lazy(() => import('@/pages/private/Categories'))
 const Products = lazy(() => import('@/pages/private/Products'))
 const Movements = lazy(() => import('@/pages/private/Movements'))
+const Alerts = lazy(() => import('@/pages/private/Alerts'))
 
 export default function App() {
   return (
@@ -40,7 +41,7 @@ export default function App() {
                     <Route path="/produits" element={<Products />} />
                     <Route path="/categories" element={<Categories />} />
                     <Route path="/mouvements" element={<Movements />} />
-                    <Route path="/alertes" element={<Placeholder titleKey="nav.alertes" />} />
+                    <Route path="/alertes" element={<Alerts />} />
                   </Route>
 
                   {/* Propriétaire uniquement */}
