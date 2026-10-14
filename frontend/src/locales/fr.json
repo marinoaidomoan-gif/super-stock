@@ -202,6 +202,91 @@
       "loadFailed": "Impossible de charger les produits."
     }
   },
+    "movements": {
+    "title": "Mouvements",
+    "subtitle": "Suivez toutes les entrées et sorties de stock.",
+    "add": "Nouveau mouvement",
+    "types": {
+      "ENTREE": "Entrée",
+      "SORTIE": "Sortie"
+    },
+    "motifs": {
+      "RECEPTION": "Réception fournisseur",
+      "RETOUR_CLIENT": "Retour client",
+      "VENTE": "Vente",
+      "PERTE": "Perte",
+      "CASSE": "Casse",
+      "CORRECTION": "Correction"
+    },
+    "filters": {
+      "type": "Type",
+      "allTypes": "Tous les types",
+      "product": "Produit",
+      "allProducts": "Tous les produits",
+      "user": "Utilisateur",
+      "allUsers": "Tous les utilisateurs",
+      "dateFrom": "Du",
+      "dateTo": "Au",
+      "reset": "Réinitialiser les filtres"
+    },
+    "columns": {
+      "date": "Date",
+      "product": "Produit",
+      "type": "Type",
+      "quantity": "Quantité",
+      "reason": "Motif",
+      "user": "Utilisateur",
+      "comment": "Commentaire"
+    },
+    "supplier": "Fournisseur : {{name}}",
+    "actions": {
+      "correct": "Corriger le mouvement n°{{id}}"
+    },
+    "empty": {
+      "title": "Aucun mouvement",
+      "description": "Enregistrez une première entrée ou sortie de stock.",
+      "noResultsTitle": "Aucun résultat",
+      "noResultsDescription": "Aucun mouvement ne correspond à vos filtres."
+    },
+    "form": {
+      "title": "Nouveau mouvement",
+      "helper": "Enregistrez une entrée ou une sortie de stock.",
+      "type": "Type de mouvement",
+      "product": "Produit",
+      "productPlaceholder": "Choisir un produit",
+      "productSearch": "Nom ou référence...",
+      "productEmpty": "Aucun produit trouvé.",
+      "currentStock": "Stock actuel : {{quantity}} {{unit}}",
+      "quantity": "Quantité",
+      "reason": "Motif",
+      "reasonPlaceholder": "Choisir un motif",
+      "comment": "Commentaire (facultatif)",
+      "errors": {
+        "productRequired": "Le produit est obligatoire.",
+        "quantityInvalid": "La quantité doit être un nombre supérieur à zéro (3 décimales maximum).",
+        "quantityInteger": "La quantité doit être un nombre entier pour cette unité.",
+        "insufficientStock": "Stock insuffisant : {{available}} {{unit}} disponible.",
+        "reasonRequired": "Le motif est obligatoire.",
+        "commentTooLong": "Le commentaire ne doit pas dépasser 500 caractères."
+      }
+    },
+    "correction": {
+      "title": "Corriger le mouvement",
+      "description": "Un mouvement n'est jamais modifié ni supprimé : cette action enregistre un mouvement inverse. L'original reste visible dans l'historique.",
+      "inverse": "Mouvement inverse : {{type}}, {{quantity}} {{unit}}, pour « {{product}} ».",
+      "reason": "Raison de la correction (facultatif)",
+      "reasonTooLong": "La raison ne doit pas dépasser 400 caractères.",
+      "confirm": "Enregistrer la correction"
+    },
+    "toast": {
+      "created": "Mouvement enregistré.",
+      "corrected": "Correction enregistrée."
+    },
+    "errors": {
+      "loadFailed": "Impossible de charger les mouvements.",
+      "conflict": "Action impossible pour le moment (inventaire en cours, produit désactivé ou mouvement déjà corrigé)."
+    }
+  },
   "auth": {
     "login": {
       "title": "Connexion",

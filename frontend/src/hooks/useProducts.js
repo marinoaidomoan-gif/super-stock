@@ -4,13 +4,12 @@ import { productService } from '@/services/productService'
 
 export const PRODUCTS_KEY = ['products']
 
-export function useProducts(params) {
+export function useProducts(params, options = {}) {
   return useQuery({
     queryKey: [...PRODUCTS_KEY, params],
     queryFn: () => productService.list(params),
-    // Pendant un changement de page ou de filtre, on garde l'ancien tableau affiché
-    // au lieu de le vider : pas de clignotement.
     placeholderData: keepPreviousData,
+    ...options,
   })
 }
 

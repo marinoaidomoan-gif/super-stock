@@ -200,6 +200,91 @@
       "loadFailed": "Unable to load products."
     }
   },
+    "movements": {
+    "title": "Movements",
+    "subtitle": "Track all incoming and outgoing stock.",
+    "add": "New movement",
+    "types": {
+      "ENTREE": "Incoming",
+      "SORTIE": "Outgoing"
+    },
+    "motifs": {
+      "RECEPTION": "Supplier delivery",
+      "RETOUR_CLIENT": "Customer return",
+      "VENTE": "Sale",
+      "PERTE": "Loss",
+      "CASSE": "Breakage",
+      "CORRECTION": "Correction"
+    },
+    "filters": {
+      "type": "Type",
+      "allTypes": "All types",
+      "product": "Product",
+      "allProducts": "All products",
+      "user": "User",
+      "allUsers": "All users",
+      "dateFrom": "From",
+      "dateTo": "To",
+      "reset": "Reset filters"
+    },
+    "columns": {
+      "date": "Date",
+      "product": "Product",
+      "type": "Type",
+      "quantity": "Quantity",
+      "reason": "Reason",
+      "user": "User",
+      "comment": "Comment"
+    },
+    "supplier": "Supplier: {{name}}",
+    "actions": {
+      "correct": "Correct movement no. {{id}}"
+    },
+    "empty": {
+      "title": "No movements",
+      "description": "Record your first stock entry or exit.",
+      "noResultsTitle": "No results",
+      "noResultsDescription": "No movement matches your filters."
+    },
+    "form": {
+      "title": "New movement",
+      "helper": "Record an incoming or outgoing stock movement.",
+      "type": "Movement type",
+      "product": "Product",
+      "productPlaceholder": "Choose a product",
+      "productSearch": "Name or reference...",
+      "productEmpty": "No product found.",
+      "currentStock": "Current stock: {{quantity}} {{unit}}",
+      "quantity": "Quantity",
+      "reason": "Reason",
+      "reasonPlaceholder": "Choose a reason",
+      "comment": "Comment (optional)",
+      "errors": {
+        "productRequired": "Product is required.",
+        "quantityInvalid": "Quantity must be a number greater than zero (3 decimals maximum).",
+        "quantityInteger": "Quantity must be a whole number for this unit.",
+        "insufficientStock": "Insufficient stock: {{available}} {{unit}} available.",
+        "reasonRequired": "Reason is required.",
+        "commentTooLong": "Comment must not exceed 500 characters."
+      }
+    },
+    "correction": {
+      "title": "Correct movement",
+      "description": "A movement is never edited or deleted: this action records a reverse movement. The original stays visible in the history.",
+      "inverse": "Reverse movement: {{type}}, {{quantity}} {{unit}}, for \"{{product}}\".",
+      "reason": "Reason for the correction (optional)",
+      "reasonTooLong": "Reason must not exceed 400 characters.",
+      "confirm": "Record correction"
+    },
+    "toast": {
+      "created": "Movement recorded.",
+      "corrected": "Correction recorded."
+    },
+    "errors": {
+      "loadFailed": "Unable to load movements.",
+      "conflict": "Action not possible right now (inventory in progress, product deactivated or movement already corrected)."
+    }
+  },
   "auth": {
     "login": {
       "title": "Sign in",
