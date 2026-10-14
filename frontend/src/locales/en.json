@@ -575,6 +575,77 @@
     "nameRequired": "Name is required."
   }
 },
+"users": {
+  "title": "Users",
+  "subtitle": "The right person, with the right access.",
+  "add": "Create a user",
+  "search": "Search a user...",
+  "banner": {
+    "title": "A secure space, clearly defined roles",
+    "subtitle": "Only the system administrator can create accounts and manage access."
+  },
+  "filters": {
+    "allRoles": "All roles"
+  },
+  "columns": {
+    "user": "User",
+    "email": "Email",
+    "role": "Role",
+    "status": "Status"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "actions": {
+    "edit": "Edit",
+    "deactivate": "Deactivate",
+    "reactivate": "Reactivate"
+  },
+  "form": {
+    "createTitle": "New user",
+    "editTitle": "Edit user",
+    "helper": "Fill in the account details.",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "role": "Role",
+    "password": "Password",
+    "errors": {
+      "nameRequired": "Name is required.",
+      "nameTooLong": "Name must not exceed 100 characters.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Email is not valid.",
+      "phoneTooLong": "Phone must not exceed 30 characters.",
+      "roleRequired": "Role is required.",
+      "passwordRequired": "Password is required.",
+      "passwordTooShort": "Password must be at least 6 characters."
+    }
+  },
+  "deactivate": {
+    "title": "Deactivate this account?",
+    "description": "\"{{name}}\" will no longer be able to sign in. You can reactivate them at any time.",
+    "confirm": "Deactivate",
+    "reactivateTitle": "Reactivate this account?",
+    "reactivateDescription": "\"{{name}}\" will be able to sign in again.",
+    "reactivateConfirm": "Reactivate"
+  },
+  "empty": {
+    "title": "No users",
+    "description": "Create the first account to give access to your workspace.",
+    "noResultsTitle": "No results",
+    "noResultsDescription": "No user matches your search."
+  },
+  "toast": {
+    "created": "User created.",
+    "updated": "User updated.",
+    "deactivated": "Account deactivated.",
+    "reactivated": "Account reactivated."
+  },
+  "errors": {
+    "loadFailed": "Unable to load users."
+  }
+},
   "landing": {
     "openApp": "Open the app",
     "nav": {

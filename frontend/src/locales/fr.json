@@ -636,6 +636,77 @@
     "nameRequired": "Le nom est obligatoire."
   }
 },
+"users": {
+  "title": "Utilisateurs",
+  "subtitle": "La bonne personne, avec les bons accès.",
+  "add": "Créer un utilisateur",
+  "search": "Rechercher un utilisateur...",
+  "banner": {
+    "title": "Un espace sécurisé, des rôles clairement définis",
+    "subtitle": "Seul l'administrateur système peut créer des comptes et gérer les accès."
+  },
+  "filters": {
+    "allRoles": "Tous les rôles"
+  },
+  "columns": {
+    "user": "Utilisateur",
+    "email": "Email",
+    "role": "Rôle",
+    "status": "Statut"
+  },
+  "status": {
+    "active": "Actif",
+    "inactive": "Inactif"
+  },
+  "actions": {
+    "edit": "Modifier",
+    "deactivate": "Désactiver",
+    "reactivate": "Réactiver"
+  },
+  "form": {
+    "createTitle": "Nouvel utilisateur",
+    "editTitle": "Modifier l'utilisateur",
+    "helper": "Renseignez les informations du compte.",
+    "name": "Nom complet",
+    "email": "Email",
+    "phone": "Téléphone (facultatif)",
+    "role": "Rôle",
+    "password": "Mot de passe",
+    "errors": {
+      "nameRequired": "Le nom est obligatoire.",
+      "nameTooLong": "Le nom ne doit pas dépasser 100 caractères.",
+      "emailRequired": "L'email est obligatoire.",
+      "emailInvalid": "L'adresse email n'est pas valide.",
+      "phoneTooLong": "Le téléphone ne doit pas dépasser 30 caractères.",
+      "roleRequired": "Le rôle est obligatoire.",
+      "passwordRequired": "Le mot de passe est obligatoire.",
+      "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères."
+    }
+  },
+  "deactivate": {
+    "title": "Désactiver ce compte ?",
+    "description": "« {{name}} » ne pourra plus se connecter. Vous pourrez le réactiver à tout moment.",
+    "confirm": "Désactiver",
+    "reactivateTitle": "Réactiver ce compte ?",
+    "reactivateDescription": "« {{name}} » pourra de nouveau se connecter.",
+    "reactivateConfirm": "Réactiver"
+  },
+  "empty": {
+    "title": "Aucun utilisateur",
+    "description": "Créez le premier compte pour donner accès à votre espace.",
+    "noResultsTitle": "Aucun résultat",
+    "noResultsDescription": "Aucun utilisateur ne correspond à votre recherche."
+  },
+  "toast": {
+    "created": "Utilisateur créé.",
+    "updated": "Utilisateur modifié.",
+    "deactivated": "Compte désactivé.",
+    "reactivated": "Compte réactivé."
+  },
+  "errors": {
+    "loadFailed": "Impossible de charger les utilisateurs."
+  }
+},
   "landing": {
     "openApp": "Accéder à l'application",
     "nav": {

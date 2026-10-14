@@ -21,6 +21,8 @@ const Suppliers = lazy(() => import('@/pages/private/Suppliers'))
 import Inventory from '@/pages/private/Inventory.jsx'
 import InventoryDetail from '@/pages/private/InventoryDetail.jsx'
 const Parametres = lazy(() => import('@/pages/private/Parametres'))
+const Utilisateurs = lazy(() => import('@/pages/private/Utilisateurs'))
+
 
 
 export default function App() {
@@ -58,7 +60,7 @@ export default function App() {
 
                   {/* Administrateur système uniquement */}
                   <Route element={<ProtectedRoute roles={[ROLES.ADMINISTRATEUR]} />}>
-                    <Route path="/utilisateurs" element={<Placeholder titleKey="nav.utilisateurs" />} />
+                    <Route path="/utilisateurs" element={<Utilisateurs />} />
                   </Route>
                 </Route>
               </Route>
