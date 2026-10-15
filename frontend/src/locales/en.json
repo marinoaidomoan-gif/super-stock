@@ -424,7 +424,8 @@
       "submit": "Sign in",
       "forgot": "Forgot your password?",
       "showPassword": "Show password",
-      "hidePassword": "Hide password"
+      "hidePassword": "Hide password",
+      "brandTagline": "Modern stock management for supermarkets."
     },
     "forgot": {
       "title": "Forgot password",

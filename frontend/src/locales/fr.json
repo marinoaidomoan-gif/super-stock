@@ -485,7 +485,8 @@
       "submit": "Se connecter",
       "forgot": "Mot de passe oublié ?",
       "showPassword": "Afficher le mot de passe",
-      "hidePassword": "Masquer le mot de passe"
+      "hidePassword": "Masquer le mot de passe",
+      "brandTagline": "La gestion de stock moderne pour supermarché."
     },
     "forgot": {
       "title": "Mot de passe oublié",
@@ -707,6 +708,7 @@
     "loadFailed": "Impossible de charger les utilisateurs."
   }
 },
+
   "landing": {
     "openApp": "Accéder à l'application",
     "nav": {
