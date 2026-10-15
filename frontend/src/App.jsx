@@ -1,7 +1,8 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { MotionConfig } from 'framer-motion'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import PageLoader from '@/components/common/PageLoader'
+import SplashScreen from '@/components/common/SplashScreen'
 import ProtectedRoute from '@/components/common/ProtectedRoute'
 import DashboardLayout from '@/components/layout/DashboardLayout'
 import { AuthProvider } from '@/contexts/AuthProvider'
@@ -26,8 +27,11 @@ const Utilisateurs = lazy(() => import('@/pages/private/Utilisateurs'))
 
 
 export default function App() {
+  const [booted, setBooted] = useState(false)
   return (
     <MotionConfig reducedMotion="user">
+      {/* Splash affiché tant que booted n'est pas passé à true */}
+      {!booted && <SplashScreen onDone={() => setBooted(true)} />}
       <BrowserRouter>
         <AuthProvider>
           <Suspense fallback={<PageLoader />}>
