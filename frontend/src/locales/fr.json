@@ -1,6 +1,7 @@
 {
   "common": {
     "appName": "SuperStock",
+    "login": "Se connecter",
     "language": "Langue",
     "loading": "Chargement...",
     "retry": "Réessayer",
