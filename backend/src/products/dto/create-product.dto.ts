@@ -41,6 +41,7 @@ export class CreateProductDto {
   @Transform(videEnNull)
   @IsOptional()
   @IsString({ message: 'La description doit être un texte.' })
+  @MaxLength(1000, { message: 'La description ne doit pas dépasser 1000 caractères.' })
   description?: string | null;
 
   // @IsEnum : la valeur doit faire partie de l'énumération Unite.

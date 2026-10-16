@@ -5,7 +5,10 @@
 // Dans une adresse, TOUT est du texte : @Type(() => Number) convertit en
 // nombre, et versBooleen convertit "true" / "false" en vrai booléen.
 import { Transform, TransformFnParams, Type } from 'class-transformer';
-import { IsBoolean, IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
+import { IsBoolean,IsIn, IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
+
+// Colonnes sur lesquelles on a le droit de trier (liste blanche).
+export const TRI_PRODUITS = ['reference', 'nom', 'quantiteStock'] as const;
 
 const versBooleen = ({ value }: TransformFnParams): unknown => {
   if (value === 'true' || value === true) return true;
@@ -52,4 +55,14 @@ export class FindProductsQueryDto {
   @Transform(versBooleen)
   @IsBoolean({ message: 'actif doit être true ou false.' })
   actif?: boolean;
+
+    // Colonne de tri (nom par défaut).
+  @IsOptional()
+  @IsIn(TRI_PRODUITS, { message: 'Le tri doit être reference, nom ou quantiteStock.' })
+  sortBy?: (typeof TRI_PRODUITS)[number];
+
+  // Sens du tri : ASC (croissant) ou DESC (décroissant).
+  @IsOptional()
+  @IsIn(['ASC', 'DESC'], { message: "L'ordre doit être ASC ou DESC." })
+  sortOrder?: 'ASC' | 'DESC';
 }

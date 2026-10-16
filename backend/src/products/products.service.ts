@@ -20,6 +20,15 @@ import { Product } from './product.entity.js';
 // "échappe" avec un \ pour qu'ils soient cherchés comme de simples caractères.
 const echapper = (texte: string): string => texte.replace(/[\\%_]/g, '\\$&');
 
+// Colonne SQL utilisée pour chaque tri. La référence (PROD-001...) découle de
+// l'id : on trie sur l'id pour éviter l'ordre alphabétique, qui placerait
+// PROD-1000 avant PROD-999.
+const COLONNES_TRI = {
+  reference: 'produit.id',
+  nom: 'produit.nom',
+  quantiteStock: 'produit.quantiteStock',
+} as const;
+
 @Injectable()
 export class ProductsService {
   constructor(
@@ -66,7 +75,16 @@ export class ProductsService {
   // Liste paginée avec filtres. Renvoie aussi le total pour que le frontend
   // puisse afficher "page 2 sur 5".
   async findAll(query: FindProductsQueryDto) {
-    const { page = 1, limit = 10, recherche, categoryId, enAlerte, actif = true } = query;
+      const {
+      page = 1,
+      limit = 10,
+      recherche,
+      categoryId,
+      enAlerte,
+      actif = true,
+      sortBy = 'nom',
+      sortOrder = 'ASC',
+    } = query;
 
     // QueryBuilder : construit une requête SQL pas à pas.
     const requete = this.productsRepository
@@ -89,6 +107,12 @@ export class ProductsService {
     } else if (enAlerte === false) {
       requete.andWhere('produit.quantiteStock > produit.seuilAlerte');
     }
+
+    requete.orderBy(COLONNES_TRI[sortBy], sortOrder);
+    // Départage les ex æquo (même quantité...) : sans cela, une ligne pourrait
+    // apparaître sur deux pages ou disparaître entre deux pages.
+    if (sortBy !== 'reference') requete.addOrderBy('produit.id', 'ASC');
+
 
     // skip = nombre de lignes à sauter ; take = nombre de lignes à garder.
     const [data, total] = await requete
@@ -137,9 +161,15 @@ export class ProductsService {
 
     // PartialType accepte aussi null ; ces champs sont pourtant obligatoires.
     // (La référence n'est plus modifiable : elle n'est plus dans le DTO.)
-    if (dto.nom === null || dto.unite === null || dto.categoryId === null) {
+    if (
+      dto.nom === null ||
+      dto.unite === null ||
+      dto.categoryId === null ||
+      dto.seuilAlerte === null ||
+      dto.actif === null
+    ) {
       throw new BadRequestException(
-        "Le nom, l'unité et la catégorie ne peuvent pas être vides.",
+        "Le nom, l'unité, la catégorie, le seuil et le statut ne peuvent pas être vides.",
       );
     }
 
