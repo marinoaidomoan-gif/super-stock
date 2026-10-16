@@ -8,11 +8,16 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ILike, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { estErreurCleEtrangere } from '../common/postgres-errors.js';
 import { CreateSupplierDto } from './dto/create-supplier.dto.js';
 import { UpdateSupplierDto } from './dto/update-supplier.dto.js';
 import { Supplier } from './supplier.entity.js';
+
+// Dans un ILIKE, % et _ sont des jokers : on les échappe pour les chercher tels quels.
+const echapper = (texte: string): string => texte.replace(/[\\%_]/g, '\\$&');
+
+export type SupplierWithCount = Supplier & { nombreApprovisionnements: number };
 
 @Injectable()
 export class SuppliersService {
@@ -31,16 +36,39 @@ export class SuppliersService {
     });
     return this.suppliersRepository.save(fournisseur);
   }
+  
 
   // Liste triée par nom. Si "recherche" est fournie, on garde seulement les
   // fournisseurs dont le nom CONTIENT ce texte (ILIKE = insensible à la casse).
   // Utile pour la liste déroulante du formulaire d'entrée de stock.
-  findAll(recherche?: string): Promise<Supplier[]> {
+  // Liste triée par nom, avec le nombre de réceptions de chaque fournisseur.
+  // Si "recherche" est fournie, on garde les noms qui CONTIENNENT ce texte.
+  async findAll(recherche?: string): Promise<SupplierWithCount[]> {
+    const requete = this.suppliersRepository
+      .createQueryBuilder('fournisseur')
+      .addSelect(
+        (sousRequete) =>
+          sousRequete
+            .select('COUNT(*)')
+            .from('stock_mouvement', 'm')
+            .where('m.id_fournisseur = fournisseur.id_fournisseur'),
+        'nombre_approvisionnements',
+      )
+      .orderBy('fournisseur.nom', 'ASC');
+
     const texte = recherche?.trim();
-    return this.suppliersRepository.find({
-      where: texte ? { nom: ILike(`%${texte}%`) } : {},
-      order: { nom: 'ASC' },
-    });
+    if (texte) {
+      requete.where('fournisseur.nom ILIKE :texte', {
+        texte: `%${echapper(texte)}%`,
+      });
+    }
+
+    const { entities, raw } = await requete.getRawAndEntities();
+    return entities.map((fournisseur, i) => ({
+      ...fournisseur,
+      // COUNT revient en texte depuis PostgreSQL : on le convertit en nombre.
+      nombreApprovisionnements: Number(raw[i].nombre_approvisionnements),
+    }));
   }
 
   async findOne(id: number): Promise<Supplier> {
