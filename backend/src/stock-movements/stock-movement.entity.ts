@@ -93,6 +93,10 @@ export class StockMovement {
   @JoinColumn({ name: 'id_fournisseur' })
   supplier!: Supplier | null;
 
+  // Pour une correction : numéro du mouvement qu'elle annule (null sinon).
+  @Column({ name: 'id_mouvement_corrige', type: 'int', nullable: true })
+  mouvementCorrigeId!: number | null;
+
   // ===== Méthodes du diagramme de classes =====
 
   // Applique ce mouvement sur le stock du produit (règles R1 et R2) :
@@ -127,6 +131,7 @@ export class StockMovement {
     correction.productId = this.productId;
     correction.userId = utilisateur.id;
     correction.supplierId = null; // un fournisseur n'a de sens que pour une réception
+    correction.mouvementCorrigeId = this.id;
     correction.commentaire = raison
       ? `Correction du mouvement n°${this.id} — ${raison}`
       : `Correction du mouvement n°${this.id}`;

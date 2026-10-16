@@ -42,6 +42,12 @@ export class StockMovementsController {
     return this.movementsService.findAll(query);
   }
 
+  // GET /api/stock-movements/auteurs
+  @Get('auteurs')
+  auteurs() {
+    return this.movementsService.findAuteurs();
+  }
+
   // GET /api/stock-movements/12
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {

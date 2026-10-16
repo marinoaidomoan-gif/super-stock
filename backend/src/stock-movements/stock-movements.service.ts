@@ -187,6 +187,15 @@ export class StockMovementsService {
       const produit = await this.verrouillerProduit(manager, original.productId);
       await this.verifierAucunInventaireEnCours(manager);
 
+      // Le produit est verrouillé : aucune autre correction ne peut passer entre
+      // cette vérification et l'enregistrement.
+      const dejaCorrige = await manager.count(StockMovement, {
+        where: { mouvementCorrigeId: id },
+      });
+      if (dejaCorrige > 0) {
+        throw new ConflictException('Ce mouvement a déjà été corrigé.');
+      }
+
       // Fabrique le mouvement inverse, puis l'applique sur le stock.
       // Si le stock est devenu insuffisant (ex. on corrige une entrée dont une
       // partie a déjà été vendue), diminuerStock refuse avec un 400 clair.
@@ -261,5 +270,20 @@ export class StockMovementsService {
       throw new NotFoundException(`Mouvement ${id} introuvable.`);
     }
     return mouvement;
+  }
+
+  // Utilisateurs ayant enregistré au moins un mouvement (pour le filtre de la liste).
+  // Le gérant ne peut pas lire /users (réservé à l'administrateur) : cette liste
+  // ne contient que l'id et le nom.
+  findAuteurs(): Promise<{ id: number; nom: string }[]> {
+    return this.movementsRepository
+      .createQueryBuilder('mouvement')
+      .innerJoin('mouvement.user', 'utilisateur')
+      .select('utilisateur.id', 'id')
+      .addSelect('utilisateur.nom', 'nom')
+      .groupBy('utilisateur.id')
+      .addGroupBy('utilisateur.nom')
+      .orderBy('utilisateur.nom', 'ASC')
+      .getRawMany<{ id: number; nom: string }>();
   }
 }
