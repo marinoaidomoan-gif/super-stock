@@ -16,6 +16,8 @@ export class CreateCategoryDto {
 
   // Facultatif : le champ peut être absent.
   @IsOptional()
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsString({ message: 'La description doit être un texte.' })
+  @MaxLength(500, { message: 'La description ne doit pas dépasser 500 caractères.' })
   description?: string;
 }

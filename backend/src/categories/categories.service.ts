@@ -13,6 +13,7 @@ import { estErreurCleEtrangere } from '../common/postgres-errors.js';
 import { Category } from './category.entity.js';
 import { CreateCategoryDto } from './dto/create-category.dto.js';
 import { UpdateCategoryDto } from './dto/update-category.dto.js';
+export type CategoryWithCount = Category & { nombreProduits: number };
 
 @Injectable()
 export class CategoriesService {
@@ -51,9 +52,26 @@ export class CategoriesService {
     return this.categoriesRepository.save(categorie);
   }
 
-  // Toutes les catégories, triées par nom (A à Z).
-  findAll(): Promise<Category[]> {
-    return this.categoriesRepository.find({ order: { nom: 'ASC' } });
+  // Toutes les catégories (A à Z), avec le nombre de produits rattachés à chacune.
+  async findAll(): Promise<CategoryWithCount[]> {
+    const { entities, raw } = await this.categoriesRepository
+      .createQueryBuilder('categorie')
+      .addSelect(
+        (sousRequete) =>
+          sousRequete
+            .select('COUNT(*)')
+            .from('produit', 'p')
+            .where('p.id_categorie = categorie.id_categorie'),
+        'nombre_produits',
+      )
+      .orderBy('categorie.nom', 'ASC')
+      .getRawAndEntities();
+
+    return entities.map((categorie, i) => ({
+      ...categorie,
+      // COUNT revient en texte depuis PostgreSQL : on le convertit en nombre.
+      nombreProduits: Number(raw[i].nombre_produits),
+    }));
   }
 
   async findOne(id: number): Promise<Category> {
