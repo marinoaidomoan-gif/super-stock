@@ -4,11 +4,13 @@ import { movementService } from '@/services/movementService'
 
 export const MOVEMENTS_KEY = ['movements']
 
-export function useMovements(params) {
+// Accepte un 2e argument "options" (ex: { enabled: false }) pour désactiver la requête.
+export function useMovements(params, options = {}) {
   return useQuery({
     queryKey: [...MOVEMENTS_KEY, params],
     queryFn: () => movementService.list(params),
     placeholderData: keepPreviousData,
+    ...options,
   })
 }
 

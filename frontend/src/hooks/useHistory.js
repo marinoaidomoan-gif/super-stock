@@ -17,14 +17,23 @@ export function useHistory() {
 
   // On charge tout ce qui peut générer des événements.
   // Les données sont déjà cachées par React Query (pas de double appel).
-  const movementsQuery = useMovements({ page: 1, limit: 100 })
-  const productsQuery = useProducts({ page: 1, limit: 100 })
-  const inventoriesQuery = useHistoriqueInventaires(1)
-  const usersQuery = useUsers({ enabled: isAdmin })  // admin uniquement
+  // ⚠️ Pour l'admin, on désactive les requêtes de stock (il n'y a pas accès)
+  // pour éviter les 403 Forbidden.
+  const movementsQuery = useMovements(
+    { page: 1, limit: 100 },
+    { enabled: !isAdmin },
+  )
+  const productsQuery = useProducts(
+    { page: 1, limit: 100 },
+    { enabled: !isAdmin },
+  )
+  const inventoriesQuery = useHistoriqueInventaires(1, { enabled: !isAdmin })
+  const usersQuery = useUsers({ enabled: isAdmin }) // admin uniquement
 
-  const movements = movementsQuery.data?.data ?? []
-  const products = productsQuery.data?.data ?? []
-  const inventories = inventoriesQuery.data?.data ?? []
+  // Pour l'admin, on force les tableaux à vide pour ne pas traiter de données fantômes.
+  const movements = isAdmin ? [] : movementsQuery.data?.data ?? []
+  const products = isAdmin ? [] : productsQuery.data?.data ?? []
+  const inventories = isAdmin ? [] : inventoriesQuery.data?.data ?? []
   const users = isAdmin ? usersQuery.data ?? [] : []
 
   const events = useMemo(() => {
@@ -92,19 +101,23 @@ export function useHistory() {
   return {
     events,
     isLoading:
-      movementsQuery.isLoading ||
-      productsQuery.isLoading ||
-      inventoriesQuery.isLoading ||
+      (!isAdmin &&
+        (movementsQuery.isLoading ||
+          productsQuery.isLoading ||
+          inventoriesQuery.isLoading)) ||
       (isAdmin && usersQuery.isLoading),
     isError:
-      movementsQuery.isError ||
-      productsQuery.isError ||
-      inventoriesQuery.isError ||
+      (!isAdmin &&
+        (movementsQuery.isError ||
+          productsQuery.isError ||
+          inventoriesQuery.isError)) ||
       (isAdmin && usersQuery.isError),
     refetch: () => {
-      movementsQuery.refetch()
-      productsQuery.refetch()
-      inventoriesQuery.refetch()
+      if (!isAdmin) {
+        movementsQuery.refetch()
+        productsQuery.refetch()
+        inventoriesQuery.refetch()
+      }
       if (isAdmin) usersQuery.refetch()
     },
   }

@@ -23,11 +23,9 @@ import { NAV_ITEMS } from '@/config/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import { useLowStockAlerts } from '@/hooks/useLowStockAlerts'
 import { cn } from '@/lib/utils'
+import { ROLES } from '@/lib/roles'
 
 // Classes appliquées à chaque bouton de navigation.
-// h-9 : hauteur 36 px (entre h-8 par défaut et h-10 du premier essai)
-// text-sm : taille standard, lisible
-// px-2.5 gap-2.5 : padding et espacement équilibrés
 const NAV_BUTTON_CLASS = cn(
   'h-9 w-full justify-start gap-2.5 px-2.5 text-sm font-medium',
   'data-[active=true]:bg-emerald-50 data-[active=true]:text-emerald-700',
@@ -42,6 +40,7 @@ export default function AppSidebar() {
   const { isMobile, setOpenMobile } = useSidebar()
   const { count } = useLowStockAlerts()
 
+  const isAdmin = user?.role === ROLES.ADMINISTRATEUR
   const items = NAV_ITEMS.filter((item) => !item.roles || can(item.roles))
   const displayName = user.nom ?? user.email
 
@@ -78,7 +77,6 @@ export default function AppSidebar() {
             {t('layout.stockManagement')}
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            {/* space-y-1 : 4 px entre chaque item */}
             <SidebarMenu className="space-y-1">
               {items.map((item) => {
                 const isActive =
@@ -101,7 +99,7 @@ export default function AppSidebar() {
                         <span className="truncate">{t(`nav.${item.key}`)}</span>
                       </Link>
                     </SidebarMenuButton>
-                    {isAlerts && count > 0 && (
+                    {isAlerts && count > 0 && !isAdmin && (
                       <SidebarMenuBadge className="bg-red-600 text-white">
                         {count > 9 ? '9+' : count}
                       </SidebarMenuBadge>
@@ -116,27 +114,29 @@ export default function AppSidebar() {
 
       {/* ---------- Pied : carte santé + paramètres + utilisateur ---------- */}
       <SidebarFooter className="px-2.5 pb-2.5">
-        {/* Carte "Votre stock, sous contrôle" — visible seulement si déplié */}
-        <div className="mb-2 rounded-lg border border-sidebar-border bg-sidebar-accent/40 p-2.5 text-xs group-data-[collapsible=icon]:hidden">
-          <div className="flex items-center gap-2 font-medium text-sidebar-accent-foreground">
-            <span className="size-2 rounded-full bg-emerald-500" />
-            {t('layout.stockHealthTitle')}
+        {/* Carte "Votre stock, sous contrôle" — visible seulement si déplié ET pas admin */}
+        {!isAdmin && (
+          <div className="mb-2 rounded-lg border border-sidebar-border bg-sidebar-accent/40 p-2.5 text-xs group-data-[collapsible=icon]:hidden">
+            <div className="flex items-center gap-2 font-medium text-sidebar-accent-foreground">
+              <span className="size-2 rounded-full bg-emerald-500" />
+              {t('layout.stockHealthTitle')}
+            </div>
+            <p className="mt-1 text-muted-foreground">
+              {t('layout.stockHealthSubtitle')}
+            </p>
+            <Link
+              to="/alertes"
+              className="mt-2 inline-flex items-center gap-1 font-medium text-emerald-600 hover:underline dark:text-emerald-400"
+              onClick={closeOnMobile}
+            >
+              {t('layout.viewActivity')} →
+            </Link>
           </div>
-          <p className="mt-1 text-muted-foreground">
-            {t('layout.stockHealthSubtitle')}
-          </p>
-          <Link
-            to="/alertes"
-            className="mt-2 inline-flex items-center gap-1 font-medium text-emerald-600 hover:underline dark:text-emerald-400"
-            onClick={closeOnMobile}
-          >
-            {t('layout.viewActivity')} →
-          </Link>
-        </div>
+        )}
 
         <SidebarSeparator className="my-1.5" />
 
-        {/* Liens du bas : Paramètres + À propos — même espacement */}
+        {/* Liens du bas : Paramètres + À propos */}
         <SidebarMenu className="space-y-1">
           <SidebarMenuItem>
             <SidebarMenuButton
@@ -166,13 +166,10 @@ export default function AppSidebar() {
 
         <SidebarSeparator className="my-1.5" />
 
-        {/* Bloc utilisateur (avatar + nom + rôle + déconnexion) */}
+        {/* Bloc utilisateur : on utilise un <div> pour éviter <button> dans <button> */}
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              size="lg"
-              className="h-11 group-data-[collapsible=icon]:!p-0"
-            >
+            <div className="flex h-11 items-center gap-2 rounded-md px-2 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0">
               <UserAvatar name={displayName} />
               <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
                 <span className="truncate font-medium">{displayName}</span>
@@ -183,13 +180,13 @@ export default function AppSidebar() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="size-8 group-data-[collapsible=icon]:hidden"
+                className="size-8 shrink-0 group-data-[collapsible=icon]:hidden"
                 onClick={logout}
                 aria-label={t('auth.logout')}
               >
                 <LogOut className="size-4" />
               </Button>
-            </SidebarMenuButton>
+            </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

@@ -27,10 +27,12 @@ export function useInventaireEnCours() {
 }
 
 // L'historique : les inventaires VALIDÉS, 5 par page.
-export function useHistoriqueInventaires(page) {
+// Accepte un 2e argument "options" (ex: { enabled: false }).
+export function useHistoriqueInventaires(page, options = {}) {
   return useQuery({
     queryKey: inventoryKeys.history(page),
     queryFn: () => inventoryService.lister({ statut: 'VALIDE', page, limit: 5 }),
+    ...options,
   })
 }
 
