@@ -415,6 +415,63 @@
       "loadFailed": "Unable to load alerts."
     }
   },
+  "suppliers": {
+    "title": "Suppliers",
+    "subtitle": "Manage the companies that supply your stock.",
+    "add": "Add a supplier",
+    "search": "Search a supplier...",
+    "columns": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "deliveries": "Deliveries"
+    },
+    "deliveriesCount_one": "{{count}} delivery",
+    "deliveriesCount_other": "{{count}} deliveries",
+    "actions": {
+      "edit": "Edit {{name}}",
+      "delete": "Delete {{name}}"
+    },
+    "empty": {
+      "title": "No suppliers",
+      "description": "Add your suppliers to track your stock deliveries.",
+      "noResultsTitle": "No results",
+      "noResultsDescription": "No supplier matches your search."
+    },
+    "form": {
+      "createTitle": "New supplier",
+      "editTitle": "Edit supplier",
+      "helper": "Only the name is required.",
+      "name": "Name",
+      "namePlaceholder": "E.g. Market Wholesaler",
+      "phone": "Phone (optional)",
+      "email": "Email (optional)",
+      "address": "Address (optional)",
+      "errors": {
+        "nameRequired": "Name is required.",
+        "nameTooLong": "Name must not exceed 150 characters.",
+        "phoneTooLong": "Phone must not exceed 30 characters.",
+        "emailInvalid": "Email address is not valid.",
+        "emailTooLong": "Email must not exceed 150 characters.",
+        "addressTooLong": "Address must not exceed 255 characters."
+      }
+    },
+    "delete": {
+      "title": "Delete this supplier?",
+      "description": "The supplier \"{{name}}\" will be permanently deleted.",
+      "confirm": "Delete"
+    },
+    "toast": {
+      "created": "Supplier created.",
+      "updated": "Supplier updated.",
+      "deleted": "Supplier deleted."
+    },
+    "errors": {
+      "loadFailed": "Unable to load suppliers.",
+      "hasMovements": "This supplier cannot be deleted: it is linked to stock movements."
+    }
+  },
   "auth": {
     "login": {
       "title": "Sign in",
@@ -517,7 +574,29 @@
       "subtitle": "Manage access to your workspace",
       "manageUsers": "Manage users",
       "comingSoon": "Coming soon",
-      "comingSoonDescription": "The user management page is coming soon."
+      "comingSoonDescription": "The user management page is coming soon.",
+      "greeting": "Hello, {{name}}",
+      "newUser": "Create a user",
+      "recentTitle": "Recent users",
+      "recentSubtitle": "Recently added accounts",
+      "viewAll": "View all",
+      "chartTitle": "Breakdown by role",
+      "chartSubtitle": "Users per account type",
+      "usersTotal": "users total",
+      "stats": {
+        "total": "Total users",
+        "totalSub": "Registered accounts",
+        "totalTag": "All roles",
+        "active": "Active accounts",
+        "activeSub": "Can sign in",
+        "activeTag": "Operational",
+        "inactive": "Inactive accounts",
+        "inactiveSub": "Access disabled",
+        "inactiveTag": "Action possible",
+        "admins": "Administrators",
+        "adminsSub": "Manage accounts",
+        "adminsTag": "System access"
+      }
     }
   },
   "errors": {
@@ -531,123 +610,123 @@
     "server": "Something went wrong. Please try again later."
   },
   "settings": {
-  "title": "Settings",
-  "subtitle": "Your profile, preferences and company.",
-  "profile": {
-    "title": "My profile",
-    "subtitle": "Your personal information",
-    "name": "Full name",
-    "email": "Email",
-    "emailHint": "Contact an administrator to change your email.",
-    "save": "Save changes",
-    "success": "Profile updated.",
-    "nameRequired": "Name is required.",
-    "noChange": "No change to save."
-  },
-  "preferences": {
-    "title": "Preferences",
-    "subtitle": "A space that feels like you",
-    "language": "Interface language",
-    "languageHint": "Available in French and English",
-    "darkMode": "Dark mode",
-    "darkModeHint": "A display tailored to your comfort",
-    "autoSave": "Your preferences are saved automatically."
-  },
-  "security": {
-    "title": "Security",
-    "subtitle": "Protect your account",
-    "current": "Current password",
-    "new": "New password",
-    "confirmation": "Confirm new password",
-    "submit": "Change password",
-    "success": "Password updated.",
-    "errors": {
-      "currentRequired": "Current password is required.",
-      "newRequired": "New password is required.",
-      "newTooShort": "Password must be at least 6 characters.",
-      "mismatch": "The two passwords do not match."
-    }
-  },
-  "company": {
-    "title": "My company",
-    "subtitle": "General settings of your workspace",
-    "name": "Company name",
-    "save": "Save",
-    "success": "Company name saved.",
-    "nameRequired": "Name is required."
-  }
-},
-"users": {
-  "title": "Users",
-  "subtitle": "The right person, with the right access.",
-  "add": "Create a user",
-  "search": "Search a user...",
-  "banner": {
-    "title": "A secure space, clearly defined roles",
-    "subtitle": "Only the system administrator can create accounts and manage access."
-  },
-  "filters": {
-    "allRoles": "All roles"
-  },
-  "columns": {
-    "user": "User",
-    "email": "Email",
-    "role": "Role",
-    "status": "Status"
-  },
-  "status": {
-    "active": "Active",
-    "inactive": "Inactive"
-  },
-  "actions": {
-    "edit": "Edit",
-    "deactivate": "Deactivate",
-    "reactivate": "Reactivate"
-  },
-  "form": {
-    "createTitle": "New user",
-    "editTitle": "Edit user",
-    "helper": "Fill in the account details.",
-    "name": "Full name",
-    "email": "Email",
-    "phone": "Phone (optional)",
-    "role": "Role",
-    "password": "Password",
-    "errors": {
+    "title": "Settings",
+    "subtitle": "Your profile, preferences and company.",
+    "profile": {
+      "title": "My profile",
+      "subtitle": "Your personal information",
+      "name": "Full name",
+      "email": "Email",
+      "emailHint": "Contact an administrator to change your email.",
+      "save": "Save changes",
+      "success": "Profile updated.",
       "nameRequired": "Name is required.",
-      "nameTooLong": "Name must not exceed 100 characters.",
-      "emailRequired": "Email is required.",
-      "emailInvalid": "Email is not valid.",
-      "phoneTooLong": "Phone must not exceed 30 characters.",
-      "roleRequired": "Role is required.",
-      "passwordRequired": "Password is required.",
-      "passwordTooShort": "Password must be at least 6 characters."
+      "noChange": "No change to save."
+    },
+    "preferences": {
+      "title": "Preferences",
+      "subtitle": "A space that feels like you",
+      "language": "Interface language",
+      "languageHint": "Available in French and English",
+      "darkMode": "Dark mode",
+      "darkModeHint": "A display tailored to your comfort",
+      "autoSave": "Your preferences are saved automatically."
+    },
+    "security": {
+      "title": "Security",
+      "subtitle": "Protect your account",
+      "current": "Current password",
+      "new": "New password",
+      "confirmation": "Confirm new password",
+      "submit": "Change password",
+      "success": "Password updated.",
+      "errors": {
+        "currentRequired": "Current password is required.",
+        "newRequired": "New password is required.",
+        "newTooShort": "Password must be at least 6 characters.",
+        "mismatch": "The two passwords do not match."
+      }
+    },
+    "company": {
+      "title": "My company",
+      "subtitle": "General settings of your workspace",
+      "name": "Company name",
+      "save": "Save",
+      "success": "Company name saved.",
+      "nameRequired": "Name is required."
     }
   },
-  "deactivate": {
-    "title": "Deactivate this account?",
-    "description": "\"{{name}}\" will no longer be able to sign in. You can reactivate them at any time.",
-    "confirm": "Deactivate",
-    "reactivateTitle": "Reactivate this account?",
-    "reactivateDescription": "\"{{name}}\" will be able to sign in again.",
-    "reactivateConfirm": "Reactivate"
+  "users": {
+    "title": "Users",
+    "subtitle": "The right person, with the right access.",
+    "add": "Create a user",
+    "search": "Search a user...",
+    "banner": {
+      "title": "A secure space, clearly defined roles",
+      "subtitle": "Only the system administrator can create accounts and manage access."
+    },
+    "filters": {
+      "allRoles": "All roles"
+    },
+    "columns": {
+      "user": "User",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "actions": {
+      "edit": "Edit",
+      "deactivate": "Deactivate",
+      "reactivate": "Reactivate"
+    },
+    "form": {
+      "createTitle": "New user",
+      "editTitle": "Edit user",
+      "helper": "Fill in the account details.",
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone (optional)",
+      "role": "Role",
+      "password": "Password",
+      "errors": {
+        "nameRequired": "Name is required.",
+        "nameTooLong": "Name must not exceed 100 characters.",
+        "emailRequired": "Email is required.",
+        "emailInvalid": "Email is not valid.",
+        "phoneTooLong": "Phone must not exceed 30 characters.",
+        "roleRequired": "Role is required.",
+        "passwordRequired": "Password is required.",
+        "passwordTooShort": "Password must be at least 6 characters."
+      }
+    },
+    "deactivate": {
+      "title": "Deactivate this account?",
+      "description": "\"{{name}}\" will no longer be able to sign in. You can reactivate them at any time.",
+      "confirm": "Deactivate",
+      "reactivateTitle": "Reactivate this account?",
+      "reactivateDescription": "\"{{name}}\" will be able to sign in again.",
+      "reactivateConfirm": "Reactivate"
+    },
+    "empty": {
+      "title": "No users",
+      "description": "Create the first account to give access to your workspace.",
+      "noResultsTitle": "No results",
+      "noResultsDescription": "No user matches your search."
+    },
+    "toast": {
+      "created": "User created.",
+      "updated": "User updated.",
+      "deactivated": "Account deactivated.",
+      "reactivated": "Account reactivated."
+    },
+    "errors": {
+      "loadFailed": "Unable to load users."
+    }
   },
-  "empty": {
-    "title": "No users",
-    "description": "Create the first account to give access to your workspace.",
-    "noResultsTitle": "No results",
-    "noResultsDescription": "No user matches your search."
-  },
-  "toast": {
-    "created": "User created.",
-    "updated": "User updated.",
-    "deactivated": "Account deactivated.",
-    "reactivated": "Account reactivated."
-  },
-  "errors": {
-    "loadFailed": "Unable to load users."
-  }
-},
   "landing": {
     "openApp": "Open the app",
     "nav": {
