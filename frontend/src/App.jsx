@@ -23,6 +23,8 @@ import Inventory from '@/pages/private/Inventory.jsx'
 import InventoryDetail from '@/pages/private/InventoryDetail.jsx'
 const Parametres = lazy(() => import('@/pages/private/Parametres'))
 const Utilisateurs = lazy(() => import('@/pages/private/Utilisateurs'))
+const Historique = lazy(() => import('@/pages/private/Historique'))
+
 
 
 
@@ -44,7 +46,7 @@ export default function App() {
               <Route element={<ProtectedRoute />}>
                 <Route element={<DashboardLayout />}>
                   <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/historique" element={<Placeholder titleKey="nav.historique" />} />
+                  <Route path="/historique" element={<Historique />} />
                   <Route path="/parametres" element={<Parametres />} />
 
                   {/* Gérant (et propriétaire, qui hérite) */}

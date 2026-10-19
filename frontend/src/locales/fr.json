@@ -824,5 +824,30 @@
       "rights": "Tous droits réservés.",
       "madeWith": "Réalisé avec React, NestJS et PostgreSQL."
     }
+  },
+  "history": {
+  "title": "Historique",
+  "subtitle": "Toutes les activités récentes de votre stock.",
+  "refresh": "Actualiser",
+  "by": "par {{name}}",
+  "types": {
+    "in": "Entrée",
+    "out": "Sortie",
+    "inventory": "Inventaire",
+    "product": "Produit",
+    "user": "Utilisateur"
+  },
+  "filters": {
+    "all": "Tout",
+    "in": "Entrées",
+    "out": "Sorties",
+    "inventory": "Inventaires",
+    "product": "Produits",
+    "user": "Utilisateurs"
+  },
+  "empty": {
+    "title": "Aucune activité",
+    "description": "Les événements apparaîtront ici au fur et à mesure."
   }
+}
 }
