@@ -17,12 +17,19 @@ import { useAuth } from '@/hooks/useAuth'
 import { useDashboardData } from '@/hooks/useDashboardData'
 import { formatNumber } from '@/lib/format'
 import { ROLES } from '@/lib/roles'
+import AdminDashboard from '@/components/dashboard/AdminDashboard'
+
 
 export default function Dashboard() {
   const { t, i18n } = useTranslation()
   const locale = i18n.resolvedLanguage
   const { user } = useAuth()
   const { data, isLoading, isError } = useDashboardData()
+
+  // L'administrateur a son propre tableau de bord (utilisateurs uniquement).
+  if (user?.role === ROLES.ADMINISTRATEUR) {
+    return <AdminDashboard />
+  }
 
   const isAdmin = user?.role === ROLES.ADMINISTRATEUR
   const isOwner = user?.role === ROLES.PROPRIETAIRE
