@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+    <title>SuperStock</title>
 
-    <script>
+    <!-- Script du thème : type="module" évite les conflits avec React -->
+    <script type="module">
       try {
         if (localStorage.getItem('superstock-theme') === 'dark') {
           document.documentElement.classList.add('dark')
