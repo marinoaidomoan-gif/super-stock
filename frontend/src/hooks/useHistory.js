@@ -1,124 +1,70 @@
-// src/hooks/useHistory.js
-//
-// Agrège les événements de l'application en une seule timeline.
-// Sources : mouvements de stock, inventaires validés, produits créés, utilisateurs créés.
-// Aucun endpoint dédié : on reconstruit l'historique à partir de l'existant.
+// Fil d'activité : le serveur fournit les mouvements, les produits et (pour l'admin) les comptes,
+// selon le rôle. Les inventaires validés viennent de leur route habituelle (propriétaire).
 import { useMemo } from 'react'
-import { useProducts } from '@/hooks/useProducts'
-import { useMovements } from '@/hooks/useMovements'
-import { useUsers } from '@/hooks/useUsers'
-import { useHistoriqueInventaires } from '@/hooks/useInventories'
+import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '@/hooks/useAuth'
+import { useHistoriqueInventaires } from '@/hooks/useInventories'
 import { ROLES } from '@/lib/roles'
+import { historyService } from '@/services/historyService'
+
+function toEvent(e) {
+  const base = { id: e.id, type: e.type, date: new Date(e.date), author: e.auteur ?? '—' }
+
+  switch (e.type) {
+    case 'movement-in':
+    case 'movement-out':
+      return {
+        ...base,
+        title: `${e.type === 'movement-in' ? 'Entrée' : 'Sortie'} de ${e.quantite} ${e.unite ?? ''}`.trim(),
+        subtitle: e.nom,
+        meta: e.detail,
+      }
+    case 'product':
+      return { ...base, title: `Produit créé : ${e.nom}`, subtitle: e.detail, meta: e.extra ?? '' }
+    default:
+      return { ...base, title: `Nouveau compte : ${e.nom}`, subtitle: e.detail, meta: e.extra ?? '' }
+  }
+}
 
 export function useHistory() {
-  const { user } = useAuth()
-  const isAdmin = user?.role === ROLES.ADMINISTRATEUR
+  const { can } = useAuth()
+  // L'inventaire est réservé au propriétaire : les autres rôles ne l'appellent pas (sinon 403).
+  const canSeeInventories = can([ROLES.PROPRIETAIRE])
 
-  // On charge tout ce qui peut générer des événements.
-  // Les données sont déjà cachées par React Query (pas de double appel).
-  // ⚠️ Pour l'admin, on désactive les requêtes de stock (il n'y a pas accès)
-  // pour éviter les 403 Forbidden.
-  const movementsQuery = useMovements(
-    { page: 1, limit: 100 },
-    { enabled: !isAdmin },
-  )
-  const productsQuery = useProducts(
-    { page: 1, limit: 100 },
-    { enabled: !isAdmin },
-  )
-  const inventoriesQuery = useHistoriqueInventaires(1, { enabled: !isAdmin })
-  const usersQuery = useUsers({ enabled: isAdmin }) // admin uniquement
-
-  // Pour l'admin, on force les tableaux à vide pour ne pas traiter de données fantômes.
-  const movements = isAdmin ? [] : movementsQuery.data?.data ?? []
-  const products = isAdmin ? [] : productsQuery.data?.data ?? []
-  const inventories = isAdmin ? [] : inventoriesQuery.data?.data ?? []
-  const users = isAdmin ? usersQuery.data ?? [] : []
+  const feedQuery = useQuery({
+    queryKey: ['history'],
+    queryFn: () => historyService.list({ limit: 100 }),
+    refetchOnMount: 'always', // toujours à jour quand on ouvre la page
+  })
+  const inventoriesQuery = useHistoriqueInventaires(1, { enabled: canSeeInventories })
 
   const events = useMemo(() => {
-    const all = []
+    const all = (feedQuery.data ?? []).map(toEvent)
 
-    // --- Mouvements de stock ---
-    for (const m of movements) {
-      all.push({
-        id: `mv-${m.id}`,
-        type: m.type === 'ENTREE' ? 'movement-in' : 'movement-out',
-        date: new Date(m.dateMouvement),
-        title:
-          m.type === 'ENTREE'
-            ? `Entrée de ${m.quantite} ${m.product?.unite ?? ''}`
-            : `Sortie de ${m.quantite} ${m.product?.unite ?? ''}`,
-        subtitle: m.product?.nom ?? 'Produit inconnu',
-        meta: m.product?.reference,
-        author: m.user?.nom ?? '—',
-      })
+    if (canSeeInventories) {
+      for (const inv of inventoriesQuery.data?.data ?? []) {
+        all.push({
+          id: `inv-${inv.id}`,
+          type: 'inventory',
+          date: new Date(inv.dateValidation ?? inv.dateFin ?? inv.dateDebut),
+          title: `Inventaire n°${inv.id} validé`,
+          subtitle: `${inv.nombreProduits ?? '—'} produits · ${inv.nombreEcarts ?? 0} écart(s)`,
+          meta: inv.commentaire ?? '',
+          author: inv.lancePar?.nom ?? '—',
+        })
+      }
     }
 
-    // --- Inventaires validés ---
-    for (const inv of inventories) {
-      all.push({
-        id: `inv-${inv.id}`,
-        type: 'inventory',
-        date: new Date(inv.dateValidation ?? inv.dateFin ?? inv.dateDebut),
-        title: `Inventaire n°${inv.id} validé`,
-        subtitle: `${inv.nombreProduits ?? '—'} produits · ${inv.nombreEcarts ?? 0} écart(s)`,
-        meta: inv.commentaire ?? '',
-        author: inv.lancePar?.nom ?? '—',
-      })
-    }
-
-    // --- Produits créés ---
-    for (const p of products) {
-      all.push({
-        id: `prod-${p.id}`,
-        type: 'product',
-        date: new Date(p.createdAt),
-        title: `Produit créé : ${p.nom}`,
-        subtitle: p.reference,
-        meta: p.category?.nom ?? '',
-        author: '—',
-      })
-    }
-
-    // --- Utilisateurs créés (admin) ---
-    for (const u of users) {
-      all.push({
-        id: `user-${u.id}`,
-        type: 'user',
-        date: new Date(u.createdAt ?? Date.now()),
-        title: `Nouveau compte : ${u.nom}`,
-        subtitle: u.email,
-        meta: u.role,
-        author: '—',
-      })
-    }
-
-    // Tri décroissant (le plus récent en premier)
     return all.sort((a, b) => b.date - a.date)
-  }, [movements, products, inventories, users])
+  }, [feedQuery.data, inventoriesQuery.data, canSeeInventories])
 
   return {
     events,
-    isLoading:
-      (!isAdmin &&
-        (movementsQuery.isLoading ||
-          productsQuery.isLoading ||
-          inventoriesQuery.isLoading)) ||
-      (isAdmin && usersQuery.isLoading),
-    isError:
-      (!isAdmin &&
-        (movementsQuery.isError ||
-          productsQuery.isError ||
-          inventoriesQuery.isError)) ||
-      (isAdmin && usersQuery.isError),
+    isLoading: feedQuery.isLoading || (canSeeInventories && inventoriesQuery.isLoading),
+    isError: feedQuery.isError || (canSeeInventories && inventoriesQuery.isError),
     refetch: () => {
-      if (!isAdmin) {
-        movementsQuery.refetch()
-        productsQuery.refetch()
-        inventoriesQuery.refetch()
-      }
-      if (isAdmin) usersQuery.refetch()
+      feedQuery.refetch()
+      if (canSeeInventories) inventoriesQuery.refetch()
     },
   }
 }

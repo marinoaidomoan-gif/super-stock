@@ -7,16 +7,10 @@ import { ROLES } from '@/lib/roles'
 // ⚠️ Pour l'administrateur, les alertes de stock n'ont pas de sens
 // (il n'a pas accès aux produits) et l'API renvoie 403.
 export function useLowStockAlerts() {
-  const { user } = useAuth()
-  const isAdmin = user?.role === ROLES.ADMINISTRATEUR
-
+  const { can } = useAuth()
   const { data = [] } = useAlerts(
     {},
-    {
-      enabled: !isAdmin,
-      refetchInterval: 60_000,
-      refetchOnWindowFocus: true,
-    },
+    { enabled: can([ROLES.GERANT]), refetchInterval: 60_000, refetchOnWindowFocus: true },
   )
   return { items: data, count: data.length }
 }
