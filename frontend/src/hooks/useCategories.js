@@ -3,8 +3,8 @@ import { categoryService } from '@/services/categoryService'
 
 export const CATEGORIES_KEY = ['categories']
 
-export function useCategories() {
-  return useQuery({ queryKey: CATEGORIES_KEY, queryFn: categoryService.list })
+export function useCategories(options = {}) {
+  return useQuery({ queryKey: CATEGORIES_KEY, queryFn: categoryService.list, ...options })
 }
 
 // Après chaque modification, on recharge la liste pour qu'elle reste à jour.

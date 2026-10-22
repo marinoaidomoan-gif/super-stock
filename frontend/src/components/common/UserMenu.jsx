@@ -1,6 +1,6 @@
 import { LogOut, Settings } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom' // Ajout de useNavigate
 import UserAvatar from '@/components/common/UserAvatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -16,7 +16,14 @@ import { useAuth } from '@/hooks/useAuth'
 export default function UserMenu() {
   const { t } = useTranslation()
   const { user, logout } = useAuth()
+  const navigate = useNavigate() // Initialisation
   const displayName = user.nom ?? user.email
+
+  // Fonction pour déconnecter ET rediriger
+  const handleLogout = () => {
+    logout()
+    navigate('/dashboard', { replace: true })
+  }
 
   return (
     <DropdownMenu>
@@ -38,7 +45,7 @@ export default function UserMenu() {
             {t('nav.parametres')}
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={logout}>
+        <DropdownMenuItem onClick={handleLogout}> {/* Utilisation de handleLogout */}
           <LogOut aria-hidden="true" />
           {t('auth.logout')}
         </DropdownMenuItem>

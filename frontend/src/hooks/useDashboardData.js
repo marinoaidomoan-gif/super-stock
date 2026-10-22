@@ -40,12 +40,12 @@ const getMovementProductId = (movement) =>
   movement?.productId ?? movement?.product?.id ?? null
 
 export function useDashboardData() {
-  // 100 produits / 100 mouvements : suffisant pour le dashboard.
-  // (Ton backend refuse 1000, d'où la limite à 100.)
-  const productsQuery = useProducts({ page: 1, limit: 100, actif: true })
-  const movementsQuery = useMovements({ page: 1, limit: 100 })
-  const categoriesQuery = useCategories()
-  const alertsQuery = useAlerts()
+  const canSeeStock = useStockAccess()
+  
+  const productsQuery = useProducts({ page: 1, limit: 100, actif: true }, { enabled: canSeeStock })
+  const movementsQuery = useMovements({ page: 1, limit: 100 }, { enabled: canSeeStock })
+  const categoriesQuery = useCategories({ enabled: canSeeStock })
+  const alertsQuery = useAlerts({}, { enabled: canSeeStock })
 
   const products = productsQuery.data?.data ?? []
   const movements = movementsQuery.data?.data ?? []

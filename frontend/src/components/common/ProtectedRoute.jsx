@@ -5,13 +5,13 @@ import { useAuth } from '@/hooks/useAuth'
 // Usage : <Route element={<ProtectedRoute roles={[ROLES.GERANT]} />}> ... </Route>
 // Sans la prop roles : il suffit d'être connecté.
 export default function ProtectedRoute({ roles }) {
-  const { user, isLoading, can } = useAuth()
+  const { user, isLoading, can, loggedOutManually } = useAuth()
   const location = useLocation()
 
   if (isLoading) return <PageLoader />
 
   if (!user) {
-    return <Navigate to="/login" replace state={{ from: location }} />
+    return <Navigate to="/login" replace state={loggedOutManually ? undefined : { from: location }} />
   }
 
   if (roles && !can(roles)) {

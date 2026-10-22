@@ -46,7 +46,6 @@ export default function App() {
               <Route element={<ProtectedRoute />}>
                 <Route element={<DashboardLayout />}>
                   <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/historique" element={<Historique />} />
                   <Route path="/parametres" element={<Parametres />} />
 
                   {/* Gérant (et propriétaire, qui hérite) */}
@@ -67,6 +66,7 @@ export default function App() {
                   {/* Administrateur système uniquement */}
                   <Route element={<ProtectedRoute roles={[ROLES.ADMINISTRATEUR]} />}>
                     <Route path="/utilisateurs" element={<Utilisateurs />} />
+                    <Route path="/historique" element={<Historique />} />
                   </Route>
                 </Route>
               </Route>

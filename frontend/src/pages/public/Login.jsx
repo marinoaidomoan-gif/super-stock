@@ -15,6 +15,8 @@ export default function Login() {
   const mutation = useMutation({ mutationFn: login })
 
   if (isLoading) return <PageLoader />
+  
+  // Dès que le user est mis à jour (après login), on redirige
   if (user)
     return (
       <Navigate to={location.state?.from?.pathname ?? '/dashboard'} replace />

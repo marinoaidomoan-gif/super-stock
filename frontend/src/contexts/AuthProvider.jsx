@@ -14,6 +14,8 @@ export function AuthProvider({ children }) {
   // Tant qu'un jeton existe, on attend la confirmation du serveur avant d'afficher l'app.
   const [isLoading, setIsLoading] = useState(() => Boolean(authStorage.getToken()))
 
+  const [loggedOutManually, setLoggedOutManually] = useState(false)
+
   // Session expirée (401 sur une route protégée) : on déconnecte.
   // ProtectedRoute redirige alors vers /login automatiquement.
   useEffect(() => {
@@ -52,20 +54,22 @@ export function AuthProvider({ children }) {
     const data = await authService.login(credentials)
     authStorage.save(data.access_token, data.user)
     setUser(data.user)
+    setLoggedOutManually(false)
     return data.user
   }, [])
 
   const logout = useCallback(() => {
     authStorage.clear()
+    setLoggedOutManually(true) // déconnexion voulue : on ne mémorisera pas la page actuelle
     setUser(null)
-    queryClient.clear() // vide le cache : le prochain utilisateur ne voit pas les données du précédent
+    queryClient.clear()
   }, [queryClient])
 
   const can = useCallback((roles) => (user ? hasRole(user.role, roles) : false), [user])
 
   const value = useMemo(
-    () => ({ user, isLoading, isAuthenticated: Boolean(user), login, logout, can }),
-    [user, isLoading, login, logout, can],
+    () => ({ user, isLoading, isAuthenticated: Boolean(user), loggedOutManually, login, logout, can }),
+    [user, isLoading, loggedOutManually, login, logout, can],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

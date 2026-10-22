@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom' // Ajout de useNavigate
 import { useTranslation } from 'react-i18next'
 import { CircleHelp, LogOut, Settings, ShoppingCart } from 'lucide-react'
 import UserAvatar from '@/components/common/UserAvatar'
@@ -37,6 +37,7 @@ export default function AppSidebar() {
   const { t } = useTranslation()
   const { user, can, logout } = useAuth()
   const { pathname } = useLocation()
+  const navigate = useNavigate() // Initialisation de navigate
   const { isMobile, setOpenMobile } = useSidebar()
   const { count } = useLowStockAlerts()
 
@@ -46,6 +47,12 @@ export default function AppSidebar() {
 
   const closeOnMobile = () => {
     if (isMobile) setOpenMobile(false)
+  }
+
+  //Nouvelle fonction pour la déconnexion
+  const handleLogout = () => {
+    logout()
+    navigate('/dashboard', { replace: true })
   }
 
   return (
@@ -181,7 +188,7 @@ export default function AppSidebar() {
                 variant="ghost"
                 size="icon"
                 className="size-8 shrink-0 group-data-[collapsible=icon]:hidden"
-                onClick={logout}
+                onClick={handleLogout} //Utilisation de handleLogout au lieu de logout
                 aria-label={t('auth.logout')}
               >
                 <LogOut className="size-4" />
