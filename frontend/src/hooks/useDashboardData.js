@@ -8,6 +8,7 @@ import { useProducts } from '@/hooks/useProducts'
 import { useMovements } from '@/hooks/useMovements'
 import { useCategories } from '@/hooks/useCategories'
 import { useAlerts } from '@/hooks/useAlerts'
+import { useStockAccess } from '@/hooks/useStockAccess'
 
 // Palette de secours si la catégorie n'a pas de couleur en base
 const FALLBACK_COLORS = [
@@ -24,7 +25,7 @@ const FALLBACK_COLORS = [
 ]
 
 // Récupère l'identifiant de catégorie d'un produit.
-// ⚠️ Ton backend NestJS expose "categoryId" (anglais) et "category" (objet eager).
+// Ton backend NestJS expose "categoryId" (anglais) et "category" (objet eager).
 const getCategoryId = (product) =>
   product?.categoryId ?? product?.category?.id ?? null
 
