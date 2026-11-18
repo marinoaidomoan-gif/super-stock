@@ -5,6 +5,7 @@ import { ThemeProvider } from 'next-themes'
 import '@fontsource-variable/inter'
 import './index.css'
 import './i18n'
+import './lib/pwaInstall.js'
 import App from './App.jsx'
 import { Toaster } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
@@ -12,7 +13,14 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { retry: 1, refetchOnWindowFocus: false, staleTime: 30_000 },
+    queries: {
+      staleTime: 30_000,
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+    mutations: {
+      networkMode: 'always',
+    },
   },
 })
 
