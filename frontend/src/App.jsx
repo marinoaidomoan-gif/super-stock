@@ -8,6 +8,9 @@ import DashboardLayout from '@/components/layout/DashboardLayout'
 import { AuthProvider } from '@/contexts/AuthProvider'
 import { ROLES } from '@/lib/roles'
 
+import OfflineBanner from '@/components/pwa/OfflineBanner.jsx'
+import PwaManager from '@/components/pwa/PwaManager.jsx'
+
 import Landing from '@/pages/public/Landing.jsx'
 
 const Login = lazy(() => import('@/pages/public/Login'))
@@ -34,6 +37,10 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       {/* Splash affiché tant que booted n'est pas passé à true */}
       {!booted && <SplashScreen onDone={() => setBooted(true)} />}
+
+      <PwaManager />
+      <OfflineBanner />
+      
       <BrowserRouter>
         <AuthProvider>
           <Suspense fallback={<PageLoader />}>
