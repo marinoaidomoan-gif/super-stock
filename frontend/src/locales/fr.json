@@ -823,6 +823,23 @@
       "follow": "Suivez-nous",
       "rights": "Tous droits réservés.",
       "madeWith": "Réalisé avec React, NestJS et PostgreSQL."
+    },
+    "pwa": {
+      "updateTitle": "Nouvelle version disponible",
+      "updateText": "Actualisez pour profiter des dernières améliorations.",
+      "refresh": "Actualiser",
+      "later": "Plus tard",
+      "offlineReady": "Application prête : elle s'ouvrira même sans connexion.",
+      "offlineBanner": "Vous êtes hors ligne. Les données affichées peuvent ne pas être à jour et les enregistrements sont impossibles.",
+      "backOnline": "Connexion rétablie.",
+      "install": "Installer l'application",
+      "installed": "SuperStock est installée.",
+      "iosTitle": "Installer SuperStock sur iPhone ou iPad",
+      "iosIntro": "Dans Safari, suivez ces trois étapes :",
+      "iosStep1": "Appuyez sur le bouton Partager (le carré avec une flèche vers le haut).",
+      "iosStep2": "Faites défiler et choisissez « Sur l'écran d'accueil ».",
+      "iosStep3": "Appuyez sur « Ajouter » en haut à droite.",
+      "close": "Compris"
     }
   },
   "history": {

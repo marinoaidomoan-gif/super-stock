@@ -819,6 +819,23 @@
       "follow": "Follow us",
       "rights": "All rights reserved.",
       "madeWith": "Built with React, NestJS and PostgreSQL."
+    },
+    "pwa": {
+      "updateTitle": "New version available",
+      "updateText": "Refresh to get the latest improvements.",
+      "refresh": "Refresh",
+      "later": "Later",
+      "offlineReady": "App ready: it will open even without a connection.",
+      "offlineBanner": "You are offline. The data shown may be outdated and saving is not possible.",
+      "backOnline": "Back online.",
+      "install": "Install the app",
+      "installed": "SuperStock is installed.",
+      "iosTitle": "Install SuperStock on iPhone or iPad",
+      "iosIntro": "In Safari, follow these three steps:",
+      "iosStep1": "Tap the Share button (the square with an arrow pointing up).",
+      "iosStep2": "Scroll down and choose “Add to Home Screen”.",
+      "iosStep3": "Tap “Add” at the top right.",
+      "close": "Got it"
     }
   },
     "history": {
