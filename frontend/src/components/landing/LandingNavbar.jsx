@@ -15,6 +15,7 @@ import Logo from '@/components/common/Logo.jsx'
 import ThemeToggle from '@/components/common/ThemeToggle.jsx'
 import { allerA, remonterEnHaut } from '@/lib/scroll.js'
 import { cn } from '@/lib/utils'
+import InstallButton from '@/components/pwa/InstallButton.jsx'
 
 // id = identifiant de la section dans la page ; cle = texte traduit du lien.
 const LIENS = [
@@ -83,6 +84,7 @@ export default function LandingNavbar() {
         </nav>
 
         <div className="flex items-center gap-1">
+          <InstallButton className="hidden md:inline-flex" />
           <LanguageSwitcher />
           <ThemeToggle />
           <div className="ml-1 hidden md:block">
