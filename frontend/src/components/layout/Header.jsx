@@ -12,6 +12,8 @@ import { useSidebar } from '@/components/ui/sidebar'
 import { useAuth } from '@/hooks/useAuth'
 import { ROLES } from '@/lib/roles'
 
+import InstallButton from '@/components/pwa/InstallButton'
+
 export default function Header() {
   const { t } = useTranslation()
   const { can } = useAuth()
@@ -55,6 +57,7 @@ export default function Header() {
 
       <div className="ml-auto flex items-center gap-1">
         {canUseStock && <NotificationBell />}
+        <InstallButton />
         <LanguageSwitcher />
         <ThemeToggle />
         <UserMenu />

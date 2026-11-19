@@ -819,8 +819,9 @@
       "follow": "Follow us",
       "rights": "All rights reserved.",
       "madeWith": "Built with React, NestJS and PostgreSQL."
-    },
-    "pwa": {
+    }
+  },
+  "pwa": {
       "updateTitle": "New version available",
       "updateText": "Refresh to get the latest improvements.",
       "refresh": "Refresh",
@@ -836,9 +837,8 @@
       "iosStep2": "Scroll down and choose “Add to Home Screen”.",
       "iosStep3": "Tap “Add” at the top right.",
       "close": "Got it"
-    }
   },
-    "history": {
+  "history": {
     "title": "History",
     "subtitle": "All recent activity in your stock.",
     "refresh": "Refresh",
