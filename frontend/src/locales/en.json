@@ -10,6 +10,7 @@
     "edit": "Edit",
     "delete": "Delete",
     "actions": "Actions",
+    "pleaseWait": "Please wait…",
     "previous": "Previous",
     "next": "Next",
     "theme": {
@@ -643,7 +644,7 @@
       "errors": {
         "currentRequired": "Current password is required.",
         "newRequired": "New password is required.",
-        "newTooShort": "Password must be at least 6 characters.",
+        "newTooShort": "Password must be at least 8 characters.",
         "mismatch": "The two passwords do not match."
       }
     },
@@ -700,7 +701,7 @@
         "phoneTooLong": "Phone must not exceed 30 characters.",
         "roleRequired": "Role is required.",
         "passwordRequired": "Password is required.",
-        "passwordTooShort": "Password must be at least 6 characters."
+        "passwordTooShort": "Password must be at least 8 characters."
       }
     },
     "deactivate": {
